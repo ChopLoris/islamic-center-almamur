@@ -17,40 +17,41 @@
 
     {{-- Home --}}
     <div class="bg-hero h-[512px]">
-        <div class="container mx-auto 2xl:px-32 lg:px-24 px-5">
+        <div id="home" class="container mx-auto 2xl:px-32 lg:px-24 px-5">
             <div class="flex md:flex-wrap lg:flex-nowrap items-center">
                 <div class="w-3/12">
                     <img src="{{ asset('images/logo.png') }}" alt="logo">
                 </div>
                 <div class="w-6/12 hidden md:block">
-                    <ul class="flex justify-center space-x-5 font-poppins">
-                        <li><a href="#" class="text-white font-semibold font-poppins text-lg">Beranda</a></li>
-                        <li><a href="#" class="text-white font-semibold font-poppins text-lg">Jadwal Sholat</a></li>
-                        <li><a href="#" class="text-white font-semibold font-poppins text-lg">Artikel</a></li>
-                        <li><a href="#" class="text-white font-semibold font-poppins text-lg">Gallery</a></li>
-                        <li><a href="#" class="text-white font-semibold font-poppins text-lg">Kontak</a></li>
+                    <ul class="navbar flex justify-center space-x-5 font-poppins">
+                        <li class="current"><a href="#home" class="text-white font-semibold font-poppins text-lg">Beranda</a></li>
+                        <li><a href="#jadwal-sholat" class="text-white font-semibold font-poppins text-lg">Jadwal Sholat</a></li>
+                        <li><a href="#artikel" class="text-white font-semibold font-poppins text-lg">Artikel</a></li>
+                        <li><a href="#gallery" class="text-white font-semibold font-poppins text-lg">Gallery</a></li>
+                        <li><a href="" class="text-white font-semibold font-poppins text-lg">Kontak</a></li>
                     </ul>
                 </div>
                 <div class="w-3/12 hidden md:block text-right">
                     <button
+                        id="kirim"
                         class="text-white font-semibold font-poppins text-lg bg-blue-500 px-6 py-3 rounded-full">Kirim
                         Infaq</button>
                 </div>
-                <div class="w-9/12 md:hidden text-right">
-                    <button>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="inline-block stroke-white h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <div data-target="#navigation" class="w-9/12 button-nav md:hidden text-right text-white z-20">
+                    <button data-target="#navigation" class="p-5">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="inline-block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
                 </div>
             </div>
-            <div class="fixed bg-white z-10 right-0 p-10 text-center top-0 h-full w-full hidden">
-                <ul class="flex flex-col space-y-6">
-                    <li><a href="#" class="text-[#232528] font-semibold font-poppins text-lg">Beranda</a></li>
-                    <li><a href="#" class="text-[#232528] font-semibold font-poppins text-lg">Jadwal Sholat</a></li>
-                    <li><a href="#" class="text-[#232528] font-semibold font-poppins text-lg">Artikel</a></li>
-                    <li><a href="#" class="text-[#232528] font-semibold font-poppins text-lg">Gallery</a></li>
-                    <li><a href="#" class="text-[#232528] font-semibold font-poppins text-lg">Kontak</a></li>
+            <div id="navigation" class="fixed nav-menu bg-white z-10 right-0 p-10 text-center top-0 h-full w-full hidden">
+                <ul class="flex nav-items items-center justify-center h-screen flex-col space-y-6 m-auto">
+                    <li><a href="#home" class="text-[#232528] font-semibold font-poppins text-lg">Beranda</a></li>
+                    <li><a href="#jadwal-sholat" class="text-[#232528] font-semibold font-poppins text-lg">Jadwal Sholat</a></li>
+                    <li><a href="#artikel" class="text-[#232528] font-semibold font-poppins text-lg">Artikel</a></li>
+                    <li><a href="#gallery" class="text-[#232528] font-semibold font-poppins text-lg">Gallery</a></li>
+                    <li><a href="" class="text-[#232528] font-semibold font-poppins text-lg">Kontak</a></li>
                     <li><button
                         class="text-white font-semibold font-poppins text-lg bg-blue-500 px-6 py-3 rounded-full">Kirim
                         Infaq</button></li>
@@ -67,7 +68,7 @@
     </div>
 
     {{-- JADWAL SHOLAT --}}
-    <section class="bg-[#EAF6FF]">
+    <section id="jadwal-sholat" class="bg-[#EAF6FF]">
         <div class="container mx-auto py-10 xl:px-32 lg:px-24 px-5">
             <div class="flex flex-wrap">
                 <div class="lg:w-3/12 w-full">
@@ -81,7 +82,7 @@
             </div>
             <div class="flex flex-wrap">
                 <div class="lg:w-6/12 w-full">
-                    <div class="flex py-5 space-x-1">
+                    <div class="flex flex-wrap py-5 space-x-1">
                         <span class="text-[#232528] text-lg font-semibold">Kamis, 10 Maret 2022</span>
                         <span class="text-lg font-semibold text-[#4CB6F4]">( 7 Sya'ban 1443 H )</span>
                     </div>
@@ -195,7 +196,7 @@
                     <h1 class="text-4xl font-bold text-[#232528] font-poppins">Mari Berinfaq !</h1>
                 </div>
                 <div class="lg:w-9/12 sm:w-full">
-                    <p class="text-sm text-[#5E646D] leading-relaxed font-semibold lg:pl-36 lg:mt-0 mt-5 lg:mt-0">Abu Malik Al-Harits bin ‘Ashim Al-Asy’ari RA berkata bahwa Rasulullah SAW bersabda, “Kesucian itu sebagian dari iman, dan kalimat alhamdulillah memenuhi timbangan. Kalimat subhanallah dan alhamdulillah memenuhi ruang yang ada di antara langit dan bumi. Shalat itu cahaya, sedekah itu bukti, sabar itu cerminan, Al-Qur’an itu hujjah yang akan membela atau menuntutmu. Setiap manusia bekerja. Ada yang menjual dirinya, ada yang membebaskan dirinya, dan ada pula yang menghancurkan dirinya.” (HR. Muslim).</p>
+                    <p class="text-sm text-[#5E646D] leading-relaxed font-semibold lg:pl-36 mt-5 lg:mt-0">Abu Malik Al-Harits bin ‘Ashim Al-Asy’ari RA berkata bahwa Rasulullah SAW bersabda, “Kesucian itu sebagian dari iman, dan kalimat alhamdulillah memenuhi timbangan. Kalimat subhanallah dan alhamdulillah memenuhi ruang yang ada di antara langit dan bumi. Shalat itu cahaya, sedekah itu bukti, sabar itu cerminan, Al-Qur’an itu hujjah yang akan membela atau menuntutmu. Setiap manusia bekerja. Ada yang menjual dirinya, ada yang membebaskan dirinya, dan ada pula yang menghancurkan dirinya.” (HR. Muslim).</p>
                 </div>
             </div>
             <div class="flex lg:flex-nowrap flex-wrap mt-5">
@@ -292,7 +293,7 @@
         </div>
     </section>
 
-    <section class="bg-[#FFA400]">
+    <section id="artikel" class="bg-[#FFA400]">
         <div class="container mx-auto py-10 2xl:px-32 lg:px-24 sm:px-5">
             <div class="flex items-center">
                 <div class="w-full">
@@ -338,7 +339,7 @@
 
 
     {{-- GALLERY --}}
-    <section class="overflow-hidden text-gray-700">
+    <section id="gallery" class="overflow-hidden text-gray-700">
         <div class="container mx-auto py-10 lg:px-32">
             <div class="flex items-center">
                 <div class="w-full">
@@ -373,6 +374,17 @@
             </div>
         </div>
     </section>
+
+    <footer>
+        <div class="text-center p-6 bg-gray-200">
+            <span>© 2021 Copyright:</span>
+            <span class="text-gray-600 font-semibold">Masjid Jami Al-Ma'mur</span>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/plugins/jquery-nav.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/js/inits/app.init.js') }}"></script>
 </body>
 
 </html>
