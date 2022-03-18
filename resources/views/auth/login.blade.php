@@ -83,15 +83,16 @@
               <h4 class="mb-2">Admin Area</h4>
               <p class="mb-4">Silahkan login terlebih dahulu.</p>
 
-              <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+              <form id="formAuthentication" class="mb-3" action="{{ route('postLogin') }}" method="POST">
+                  @csrf
                 <div class="mb-3">
-                  <label for="email" class="form-label">Email or Username</label>
+                  <label for="email" class="form-label">Username</label>
                   <input
                     type="text"
                     class="form-control"
-                    id="email"
-                    name="email-username"
-                    placeholder="Enter your email or username"
+                    id="username"
+                    name="username"
+                    placeholder="Masukkan username anda"
                     autofocus
                   />
                 </div>

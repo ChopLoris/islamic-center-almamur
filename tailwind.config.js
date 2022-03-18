@@ -25,6 +25,27 @@ module.exports = {
                 "background-size": "cover",
                 "background-position": "bottom",
                 "background-repeat": "no-repeat"
+            },
+            ".bg-slider1": {
+                "background-image": "url(/images/gallery/1.png)",
+                "background-size": "cover",
+                "background-position": "center",
+                "background-repeat": "no-repeat",
+            },
+            ".bg-slider2": {
+                "background-image": "url(/images/gallery/2.png)",
+                "background-size": "cover",
+                "background-position": "center",
+                "background-repeat": "no-repeat",
+            },
+            ".bg-slider3": {
+                "background-image": "url(/images/gallery/3.png)",
+                "background-size": "cover",
+                "background-position": "center",
+                "background-repeat": "no-repeat",
+            },
+            ".is-active": {
+                "opacity": "1",
             }
         };
 
