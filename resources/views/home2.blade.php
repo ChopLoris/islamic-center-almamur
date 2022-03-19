@@ -13,126 +13,242 @@
                 <link rel="stylesheet" href="{{ asset('css/splide-3.6.12/css/splide.min.css') }}">
             <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         </head>
-    <body class="w-full">
-        <div class="lg:fixed hidden w-full z-30 top-0 bg-white shadow-lg">
-            <div class="flex p-3 bg-blue-500">
-                <span class="w-36 text-white 2xl:text-base lg:text-sm font-semibold font-poppins">SEKILAS INFO</span>
-                <marquee class="font-poppins text-white text-sm font-semibold" behavior="" direction="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga laborum sit ex voluptatum iure accusantium?</marquee>
-                <span class="w-40 ml-5 text-white 2xl:text-base lg:text-sm font-semibold font-poppins">WAKTU 15:03:22</span>
+    <body class="w-full h-screen" x-data="{ showInfo: true, showSearch: false }">
+        <div class="fixed w-full z-30 top-0 bg-white shadow-lg" @scroll.window="showInfo = (window.pageYOffset > 20) ? false : true">
+            <div class="p-3 bg-blue-500" :class="{ 'flex': showInfo, 'hidden': !showInfo }">
+                <span class="w-36 lg:flex hidden text-white 2xl:text-base lg:text-sm font-semibold font-poppins">SEKILAS INFO</span>
+                <marquee class="font-poppins text-white lg:text-sm text-xs font-semibold" behavior="" direction="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga laborum sit ex voluptatum iure accusantium?</marquee>
+                <span id="timeNow" class="w-40 ml-5 lg:flex hidden text-white 2xl:text-base lg:text-sm font-semibold font-poppins">WAKTU 15:03:22</span>
             </div>
-            <div class="container flex justify-between mx-auto 2xl:px-16 lg:px-5">
-                <div class="flex lg:w-6/12 items-center logo">
-                    <div class="image">
-                        <img src="{{ asset('images/logo.png') }}" alt="">
+            <div class="lg:container bg-white flex lg:flex-row flex-col justify-between mx-auto 2xl:px-16 px-0">
+                <div class="flex flex-col xl:w-6/12 lg:w-5/12 items-center logo">
+                    <div class="flex w-full items-center">
+                        <div class="image">
+                            <img src="{{ asset('images/logo.png') }}" alt="">
+                        </div>
+                        <div class="ml-2">
+                            <h1 class="xl:text-2xl lg:text-xl text-sm font-semibold font-poppins">Masjid Jamie Al-Ma'mur</h1>
+                            <p class="xl:text-sm w-8/12 lg:text-sm text-xs font-semibold font-poppins text-gray-500">Pusat Perubahan Menuju Muslim Yang Rahmatan Lil'alamin</p>
+                        </div>
                     </div>
-                    <div class="ml-2">
-                        <h1 class="xl:text-2xl lg:text-xl font-semibold font-poppins">Masjid Jamie Al-Ma'mur</h1>
-                        <p class="xl:text-sm lg:text-sm font-semibold font-poppins text-gray-500">Pusat Perubahan Menuju Muslim Yang Rahmatan Lil'alamin</p>
+                    <div class="w-full lg:hidden flex flex-col mx-auto">
+                        <div class="flex bg-[#0F4C75]">
+                            <div class="w-2/12 px-2 py-2">
+                                <h3 class="text-center text-white md:text-lg text-[10px] font-semibold">SUBUH</h3>
+                                <p class="text-center text-[#BBE1FA] font-semibold md:text-base text-[10px]">{{ $waktuSholat['subuh']}}</p>
+                            </div>
+                            <div class="w-2/12 px-2 py-2">
+                                <h3 class="text-center text-white md:text-lg text-[10px] font-semibold">TERBIT</h3>
+                                <p class="text-center text-[#BBE1FA] font-semibold md:text-base text-[10px]">{{ $waktuSholat['terbit']}}</p>
+                            </div>
+                            <div class="w-2/12 px-2 py-2">
+                                <h3 class="text-center text-white md:text-lg text-[10px] font-semibold">DZUHUR</h3>
+                                <p class="text-center text-[#BBE1FA] font-semibold md:text-base text-[10px]">{{ $waktuSholat['dhuhr']}}</p>
+                            </div>
+                            <div class="w-2/12 px-2 py-2">
+                                <h3 class="text-center text-white md:text-lg text-[10px] font-semibold">ASHAR</h3>
+                                <p class="text-center text-[#BBE1FA] font-semibold md:text-base text-[10px]">{{ $waktuSholat['asr']}}</p>
+                            </div>
+                            <div class="w-2/12 px-2 py-2">
+                                <h3 class="text-center text-white md:text-lg text-[10px] font-semibold">MAGHRIB</h3>
+                                <p class="text-center text-[#BBE1FA] font-semibold md:text-base text-[10px]">{{ $waktuSholat['maghrib']}}</p>
+                            </div>
+                            <div class="w-2/12 px-2 py-2">
+                                <h3 class="text-center text-white md:text-lg text-[10px] font-semibold">ISYA</h3>
+                                <p class="text-center text-[#BBE1FA] font-semibold md:text-base text-[10px]">{{ $waktuSholat['isha']}}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="flex lg:w-6/12 2xl:space-x-10 lg:space-x-5 items-center">
-                    <ul class="flex 2xl:space-x-10 lg:space-x-5">
-                        <li><a class="2xl:text-base lg:text-xs font-semibold font-poppins" href="#">Beranda</a></li>
-                        <li><a class="2xl:text-base lg:text-xs font-semibold font-poppins" href="#">Artikel</a></li>
-                        <li><a class="2xl:text-base lg:text-xs font-semibold font-poppins" href="#">Laporan Keuangan</a></li>
-                        <li><a class="2xl:text-base lg:text-xs font-semibold font-poppins" href="#">Informasi</a></li>
-                        <li><a class="2xl:text-base lg:text-xs font-semibold font-poppins" href="#">Galeri</a></li>
-                    </ul>
-                    <button class="bg-[#EDF5F3] rounded-full px-3 py-3">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="2xl:h-6 2xl:w-6 lg:w-4 lg:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </button>
+                <div class="xl:w-6/12 lg:w-7/12 flex items-center" x-data="{ navOpen: false }">
+                    <div class="w-full lg:inline-flex hidden" :class="{ 'hidden': !navOpen, 'flex': navOpen}">
+                        <ul class="flex w-full lg:flex-row flex-col xl:space-x-10 lg:space-x-5 overflow-hidden">
+                            <li class="xl:text-lg lg:py-0 lg:px-0 border-b-2 border-blue-200 lg:border-b-4 py-3 px-2">
+                                <a class="text-base font-semibold font-poppins text-black-50 border-blue-400" href="">Beranda</a>
+                            </li>
+                            <li class="xl:text-lg lg:py-0 lg:px-0 py-3 px-2 border-b-2 border-blue-200 lg:border-b-0" x-data="{ opendropDown: false }">
+                                <button class="text-base w-full justify-between flex flex-row items-center space-x-2 mt-0 xl:mt-[3px] overflow-hidden font-semibold font-poppins text-black-50" @click.prevent="opendropDown = !opendropDown">
+                                    <span>Artikel</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div class="lg:absolute bg-white lg:w-48 lg:border-2 rounded-lg mt-6" x-show="opendropDown" @click.away="opendropDown = false">
+                                    <ul class="font-semibold font-poppins text-base">
+                                        <li class="px-3 py-3 hover:bg-blue-200"><a href="">Jadwal Jumat</a></li>
+                                        <li class="px-3 py-3 hover:bg-blue-200"><a href="">Jadwal Jumat</a></li>
+                                        <li class="px-3 py-3 hover:bg-blue-200"><a href="">Jadwal Jumat</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="xl:text-lg lg:py-0 lg:px-0 py-3 px-2 border-b-2 border-blue-200 lg:border-b-0" x-data="{ opendropDown: false }">
+                                <button class="text-base w-full justify-between flex flex-row items-center space-x-2 mt-0 xl:mt-[3px] overflow-hidden font-semibold font-poppins text-black-50" @click.prevent="opendropDown = !opendropDown">
+                                    <span>Infaq</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div class="lg:absolute bg-white lg:w-48 lg:border-2 rounded-lg mt-6" x-show="opendropDown" @click.away="opendropDown = false">
+                                    <ul class="font-semibold font-poppins text-base">
+                                        <li class="px-3 py-3 hover:bg-blue-200"><a href="">Jadwal Jumat</a></li>
+                                        <li class="px-3 py-3 hover:bg-blue-200"><a href="">Jadwal Jumat</a></li>
+                                        <li class="px-3 py-3 hover:bg-blue-200"><a href="">Jadwal Jumat</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="xl:text-lg lg:py-0 lg:px-0 py-3 px-2 border-b-2 border-blue-200 lg:border-b-0" x-data="{ opendropDown: false }">
+                                <button class="text-base w-full justify-between flex flex-row items-center space-x-2 mt-0 xl:mt-[3px] overflow-hidden font-semibold font-poppins text-black-50" @click.prevent="opendropDown = !opendropDown">
+                                    <span>Informasi</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div class="lg:absolute bg-white lg:w-48 lg:border-2 rounded-lg mt-6" x-show="opendropDown" @click.away="opendropDown = false">
+                                    <ul class="font-semibold font-poppins text-base">
+                                        <li class="px-3 py-3 hover:bg-blue-200"><a href="">Jadwal Jumat</a></li>
+                                        <li class="px-3 py-3 hover:bg-blue-200"><a href="">Jadwal Jumat</a></li>
+                                        <li class="px-3 py-3 hover:bg-blue-200"><a href="">Jadwal Jumat</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="xl:text-lg lg:py-0 lg:px-0 border-b-2 border-blue-200 lg:border-b-0 py-3 px-2">
+                                <a class="text-base font-semibold font-poppins text-black-50 border-blue-400" href="">Gallery</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="lg:static absolute right-2 flex space-x-2" :class="{'top-7': !showInfo, 'top-16': showInfo}">
+                        <button class="px-2 py-2 bg-blue-200 rounded-full" @click.prevent="showSearch = !showSearch">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                              </svg>
+                        </button>
+                        <button class="lg:hidden px-2 py-2 bg-blue-200 rounded-full" @click.prevent = "navOpen = !navOpen">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                              </svg>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="flex flex-wrap w-full">
-            <div class="splide-navbar w-full relative z-10">
-                <div class="splide__track w-full h-[620px]">
-                    <ul class="splide__list">
-                        <li class="splide__slide bg-slider1">
-                            <div class="flex bg-black/50 w-full h-full"></div>
-                        </li>
-                        <li class="splide__slide bg-slider2">
-                            <div class="flex bg-black/50 w-full h-full"></div>
-                        </li>
-                        <li class="splide__slide bg-slider3">
-                            <div class="flex bg-black/50 w-full h-full"></div>
-                        </li>
-                    </ul>
-                </div>
+        <div class="fixed h-screen bg-black bg-opacity-70 w-full z-30" x-show="showSearch">
+            <div class="absolute right-0 text-white">
+                <button class="mr-5 mt-10" @click.prevent="showSearch = false">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
-            <div class="w-full">
-                <div class="w-8/12 absolute left-1/2 flex h-36 bg-[#0F4C75] rounded-xl shadow-xl">
-                    <div class="flex w-5/12 py-4">
-                        <div class="w-2/12 mx-4 mt-3 text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <div class="absolute top-1/2 left-[25%] mx-auto w-8/12">
+                <input class="bg-white rounded-full lg:w-8/12 w-10/12 px-5 py-3 text-center placeholder-slate-700 border-2 border-blue-400 outline-0 font-poppins text-bold" placeholder="Search" type="text" @click.away="showSearch = false">
+            </div>
+        </div>
+
+        <div class="splide-navbar z-10">
+            <div class="splide__track">
+                <ul class="splide__list">
+                    <li class="splide__slide">
+                        <img class="w-screen h-[70vh] object-cover" src="{{ asset('images/gallery/1.png') }}" />
+                    </li>
+                    <li class="splide__slide">
+                        <img class="object-cover h-[70vh] w-screen" src="{{ asset('images/gallery/2.png') }}" />
+                    </li>
+                    <li class="splide__slide">
+                        <img class="object-cover h-[70vh] w-screen" src="{{ asset('images/gallery/3.png') }}" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="w-full lg:absolute flex z-20 top-[64%]">
+            <div class="bg-[#0F4C75] xl:w-8/12 lg:w-10/12 w-full flex lg:flex-row flex-col lg:items-start items-center lg:mx-auto mx-0 lg:rounded-lg rounded-none shadow-xl">
+                <div class="lg:w-1/3 md:w-1/2 w-full flex lg:flex-row flex-col lg:text-left text-center p-3">
+                    <div class="lg:w-4/12 w-full flex lg:justify-start justify-center text-white">
+                        <div class="lg:w-24 w-14">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                               </svg>
                         </div>
-                        <div class="w-10/12 flex flex-col justify-between mx-auto">
-                            <h2 class="font-semibold font-poppins text-base text-white">Masjid Jamie Al-Ma'mur Bekasi</h2>
-                            <p class="font-semibold w-8/12 font-poppins text-sm text-gray-300">Jl. Raya Kp. Setu No.3, RT.001/RW.002, Bintara Jaya, Kec. Bekasi Bar., Kota Bks, Jawa Barat 17136</p>
-                        </div>
                     </div>
-                    <div class="flex 5/12">
-                        <div class="slider-petugas">
-                            <div class="splide__track">
-                                <ul class="splide__list">
-                                    <li class="splide__slide flex py-2  ">
-                                        <div class="overflow-hidden pr-4">
-                                            <img class="h-32 w-32 bg-cover" src="{{ asset('assets/img/avatars/1.png') }}" alt="">
-                                        </div>
-                                        <div class="w-10/12 flex flex-col justify-between mx-auto">
-                                            <h2 class="font-semibold font-poppins text-base text-white">Jaja Miharja</h2>
-                                            <p class="font-semibold font-poppins text-sm text-gray-300">Ketua DKM Masjid Jamie Al-Ma'mur</p>
-                                            <a class="flex justify-between items-center font-semibold text-sm w-1/2 text-white font-poppins rounded px-5 py-2 bg-blue-500">
-                                                <span>Profile</span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                                </svg>
-                                            </a>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="lg:w-8/12 w-full text-white">
+                        <h3 class="2xl:text-sm text-xs font-bold font-poppins">Masjid Al Jamie Ma'mur Bekasi</h3>
+                        <p class="font-poppins 2xl:text-sm text-xs mt-2">Jl. Raya Kp. Setu No.3, RT.001/RW.002, Bintara Jaya, Kec. Bekasi Bar., Kota Bks, Jawa Barat 17136</p>
                     </div>
-                    <div class="flex w-4/12 py-4">
-                        <div class="w-2/12 mx-4 mt-3 text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                              </svg>
-                        </div>
-                        <div class="w-10/12 flex flex-col justify-between mx-auto">
-                            <h2 class="font-semibold font-poppins text-base text-white">Layanan Informasi</h2>
-                            <p class="font-semibold font-poppins text-sm text-gray-300">(+62) 8888-8888-88888</p>
-                            <ul class="flex justify-center">
-                                <li>
-                                    <a href=""><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-youtube" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                        <rect x="3" y="5" width="18" height="14" rx="4" />
-                                        <path d="M10 9l5 3l-5 3z" />
-                                      </svg></a>
+                </div>
+                <div class="lg:w-1/3 md:w-1/2 w-full">
+                    <div class="slider-petugas">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                <li class="splide__slide flex py-2 pr-5">
+                                    <div class="w-3/12 overflow-hidden pr-4">
+                                        <img class="h-24 w-24 bg-cover" src="{{ asset('assets/img/avatars/1.png') }}" alt="">
+                                    </div>
+                                    <div class="w-9/12 flex flex-col justify-between mx-auto">
+                                        <h2 class="font-semibold font-poppins 2xl:text-sm text-xs text-white">Jaja Miharja</h2>
+                                        <p class="font-semibold font-poppins 2xl:text-sm text-xs text-gray-300">Ketua DKM Masjid Jamie Al-Ma'mur</p>
+                                        <a href="" class="flex justify-between items-center font-semibold 2xl:text-sm text-xs lg:w-1/2 text-white font-poppins rounded-lg lg:px-5 lg:py-2 px-3 bg-blue-500">
+                                            <span>Profile</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                            </svg>
+                                        </a>
+                                    </div>
                                 </li>
-                                <li>
-                                    <a href=""><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                        <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" />
-                                      </svg></a>
-                                </li>
-                                <li>
-                                    <a href=""><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                                        <rect x="4" y="4" width="16" height="16" rx="4" />
-                                        <circle cx="12" cy="12" r="3" />
-                                        <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
-                                      </svg></a>
+                                <li class="splide__slide flex py-2 pr-5">
+                                    <div class="w-3/12 overflow-hidden pr-4">
+                                        <img class="h-24 w-24 bg-cover" src="{{ asset('assets/img/avatars/5.png') }}" alt="">
+                                    </div>
+                                    <div class="w-9/12 flex flex-col justify-between">
+                                        <h2 class="font-semibold font-poppins 2xl:text-sm text-xs text-white">Jaja Miharja</h2>
+                                        <p class="font-semibold font-poppins 2xl:text-sm text-xs text-gray-300">Ketua DKM Masjid Jamie Al-Ma'mur</p>
+                                        <a href="" class="flex justify-between items-center font-semibold 2xl:text-sm text-xs lg:w-1/2 text-white font-poppins rounded-lg lg:px-5 lg:py-2 px-3 bg-blue-500">
+                                            <span>Profile</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                            </svg>
+                                        </a>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/3 md:w-1/2 w-full flex py-3">
+                    <div class="w-4/12 text-white">
+                        <div class="w-20">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                              </svg>
+                        </div>
+                    </div>
+                    <div class="w-8/12 text-white">
+                        <h3 class="2xl:text-sm text-xs font-bold font-poppins">PUSAT INFORMASI</h3>
+                        <p class="font-poppins 2xl:text-sm text-xs my-2">(+62) 8688-8888-8888</p>
+                        <ul class="flex">
+                            <li class="text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-youtube" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <rect x="3" y="5" width="18" height="14" rx="4"></rect>
+                                    <path d="M10 9l5 3l-5 3z"></path>
+                                 </svg></a>
+                            </li>
+                            <li>
+                                <a href=""><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3"></path>
+                                 </svg></a>
+                            </li>
+                            <li>
+                                <a href=""><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <rect x="4" y="4" width="16" height="16" rx="4"></rect>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <line x1="16.5" y1="7.5" x2="16.5" y2="7.501"></line>
+                                 </svg></a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -140,36 +256,36 @@
 
         <section class="flex flex-col lg:mt-24 mt-10 lg:px-20 px-5">
 
-            <div class="md:flex hidden mb-10">
-                <div class="w-8/12 flex flex-col mx-auto">
+            <div class="mb-10 lg:flex hidden">
+                <div class="lg:w-8/12 w-full flex flex-col mx-auto">
                     <div class="flex justify-between">
-                        <span class="font-semibold px-5 py-3 rounded text-black font-poppins text-xl">Jadwal Sholat Bekasi</span>
-                        <span class="font-semibold px-5 py-3 rounded font-poppins text-xl">Jum'at, 18 Maret 2022</span>
+                        <span class="font-semibold px-5 py-3 rounded text-black font-poppins xl:text-xl md:text-lg text-[10px]">Jadwal Sholat Bekasi</span>
+                        <span class="font-semibold px-5 py-3 rounded font-poppins xl:text-xl md:text-lg text-[10px]">Jum'at, 18 Maret 2022</span>
                     </div>
                     <div class="flex shadow-xl rounded-xl bg-[#0F4C75]">
                         <div class="w-2/12 px-2 py-2">
-                            <h3 class="text-center text-white font-semibold">SUBUH</h3>
-                            <p class="text-center text-[#BBE1FA] font-semibold text-base">13:00</p>
+                            <h3 class="text-center text-white md:text-lg text-[10px] font-semibold">SUBUH</h3>
+                            <p class="text-center text-[#BBE1FA] font-semibold md:text-base text-[10px]">{{ $waktuSholat['subuh']}}</p>
                         </div>
                         <div class="w-2/12 px-2 py-2">
-                            <h3 class="text-center text-white font-semibold">TERBIT</h3>
-                            <p class="text-center text-[#BBE1FA] font-semibold text-base">13:00</p>
+                            <h3 class="text-center text-white md:text-lg text-[10px] font-semibold">TERBIT</h3>
+                            <p class="text-center text-[#BBE1FA] font-semibold md:text-base text-[10px]">{{ $waktuSholat['terbit']}}</p>
                         </div>
                         <div class="w-2/12 px-2 py-2">
-                            <h3 class="text-center text-white font-semibold">DZUHUR</h3>
-                            <p class="text-center text-[#BBE1FA] font-semibold text-base">13:00</p>
+                            <h3 class="text-center text-white md:text-lg text-[10px] font-semibold">DZUHUR</h3>
+                            <p class="text-center text-[#BBE1FA] font-semibold md:text-base text-[10px]">{{ $waktuSholat['dhuhr']}}</p>
                         </div>
                         <div class="w-2/12 px-2 py-2">
-                            <h3 class="text-center text-white font-semibold">ASHAR</h3>
-                            <p class="text-center text-[#BBE1FA] font-semibold text-base">13:00</p>
+                            <h3 class="text-center text-white md:text-lg text-[10px] font-semibold">ASHAR</h3>
+                            <p class="text-center text-[#BBE1FA] font-semibold md:text-base text-[10px]">{{ $waktuSholat['asr']}}</p>
                         </div>
                         <div class="w-2/12 px-2 py-2">
-                            <h3 class="text-center text-white font-semibold">MAGHRIB</h3>
-                            <p class="text-center text-[#BBE1FA] font-semibold text-base">13:00</p>
+                            <h3 class="text-center text-white md:text-lg text-[10px] font-semibold">MAGHRIB</h3>
+                            <p class="text-center text-[#BBE1FA] font-semibold md:text-base text-[10px]">{{ $waktuSholat['maghrib']}}</p>
                         </div>
                         <div class="w-2/12 px-2 py-2">
-                            <h3 class="text-center text-white font-semibold">ISYA</h3>
-                            <p class="text-center text-[#BBE1FA] font-semibold text-base">13:00</p>
+                            <h3 class="text-center text-white md:text-lg text-[10px] font-semibold">ISYA</h3>
+                            <p class="text-center text-[#BBE1FA] font-semibold md:text-base text-[10px]">{{ $waktuSholat['isha']}}</p>
                         </div>
                     </div>
                 </div>
@@ -420,7 +536,9 @@
                         <div class="flex lg:w-4/12 w-full shadow-lg p-10 rounded border-2">
                             <div class="flex flex-col items-center justify-center">
                                 <h3 class="text-xl font-bold font-poppins text-black-50">Petugas Jum'at</h3>
-                                <img class="rounded-full 2xl:w-32 xl:w-full md:w-1/3 my-5" src="{{ asset('/images/ustadz.jpg') }}" alt="">
+                                <div class="lg:w-full flex justify-center md:w-1/3">
+                                    <img class="2xl:w-32 md:w-2/3 w-1/2 rounded-full my-5" src="{{ asset('/images/ustadz.jpg') }}" alt="">
+                                </div>
                                 <span class="font-semibold font-poppins">Nama Ustadz</span>
                                 <p class="font-medium text-center text-gray-400 font-poppins">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
                                 <span class="font-bold px-10 py-5 bg-blue-500 text-sm text-white rounded-full mt-5">12, Maret 2022</span>
@@ -494,7 +612,7 @@
             </div>
             <div class="container md:px-20 mx-auto">
                 <div class="flex flex-wrap py-10">
-                    <div class="sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
+                    <div class="sm:w-1/2 md:w-1/2 xl:w-1/4 w-full p-4">
                         <a href="#" class="block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
                             <div class="relative pb-48 overflow-hidden">
                                 <img class="absolute inset-0 h-full w-full object-cover" src="{{ asset('images/gallery/1.png') }}" alt="">
@@ -513,12 +631,12 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-500 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                     </svg>
-                                    <span class="font-bold font-poppins ml-2">Jaja Miharja (Sekretaris Mesjid)</span>
+                                    <span class="font-bold font-poppins ml-2">Nama Kontak (Sekretaris Mesjid)</span>
                                 </span>
                             </div>
                         </a>
                     </div>
-                    <div class="sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
+                    <div class="sm:w-1/2 md:w-1/2 xl:w-1/4 w-full p-4">
                         <a href="#" class="block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
                             <div class="relative pb-48 overflow-hidden">
                                 <img class="absolute inset-0 h-full w-full object-cover" src="{{ asset('images/gallery/1.png') }}" alt="">
@@ -537,12 +655,12 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-500 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                     </svg>
-                                    <span class="font-bold font-poppins ml-2">Jaja Miharja (Sekretaris Mesjid)</span>
+                                    <span class="font-bold font-poppins ml-2">Nama Kontak (Sekretaris Mesjid)</span>
                                 </span>
                             </div>
                         </a>
                     </div>
-                    <div class="sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
+                    <div class="sm:w-1/2 md:w-1/2 xl:w-1/4 w-full p-4">
                         <a href="#" class="block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
                             <div class="relative pb-48 overflow-hidden">
                                 <img class="absolute inset-0 h-full w-full object-cover" src="{{ asset('images/gallery/1.png') }}" alt="">
@@ -561,12 +679,12 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-500 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                     </svg>
-                                    <span class="font-bold font-poppins ml-2">Jaja Miharja (Sekretaris Mesjid)</span>
+                                    <span class="font-bold font-poppins ml-2">Nama Kontak (Sekretaris Mesjid)</span>
                                 </span>
                             </div>
                         </a>
                     </div>
-                    <div class="sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
+                    <div class="sm:w-1/2 md:w-1/2 xl:w-1/4 w-full p-4">
                         <a href="#" class="block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
                             <div class="relative pb-48 overflow-hidden">
                                 <img class="absolute inset-0 h-full w-full object-cover" src="{{ asset('images/gallery/1.png') }}" alt="">
@@ -585,7 +703,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-500 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                     </svg>
-                                    <span class="font-bold font-poppins ml-2">Jaja Miharja (Sekretaris Mesjid)</span>
+                                    <span class="font-bold font-poppins ml-2">Nama Kontak (Sekretaris Mesjid)</span>
                                 </span>
                             </div>
                         </a>
@@ -644,6 +762,7 @@
 
         <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
         <script type="text/javascript" src="{{ asset('/js/plugins/splide-3.6.12/js/splide.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('/js/plugins/alpinejs.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('/js/plugins/jquery-nav.js') }}"></script>
         <script type="text/javascript" src="{{ asset('/js/inits/app.init.js') }}"></script>
         <script type="text/javascript" src="{{ asset('/js/inits/slider.init.js') }}"></script>

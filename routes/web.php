@@ -17,7 +17,6 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', [Home::class, 'index']);
-Route::get('/test', [Home::class, 'index2']);
 Route::get('/administrator', [AuthController::class, 'index'])->name('administrator');
 Route::get('/administrator/dashboard', [AdminController::class, 'index']);
 Route::post('/administrator/login', [AuthController::class, 'postLogin'])->name('postLogin');

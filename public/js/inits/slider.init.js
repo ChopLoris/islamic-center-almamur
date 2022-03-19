@@ -3,6 +3,7 @@
     $(document).ready(function() {
         new Splide( '.splide-navbar', {
             autoplay: true,
+            height: "70vh",
             pagination: false,
         } ).mount();
 
