@@ -8,6 +8,8 @@
     <script src="{{ asset('/assets/vendor/js/menu.js') }}"></script>
     <!-- endbuild -->
 
+    @yield('custom-js')
+
     <!-- Vendors JS -->
 
     <!-- Main JS -->

@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ArtikelController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Home;
 use App\Http\Controllers\AuthController;
+use Illuminate\Routing\RouteGroup;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +20,17 @@ use App\Http\Controllers\AuthController;
 
 Route::get('/', [Home::class, 'index']);
 Route::get('/administrator', [AuthController::class, 'index'])->name('administrator');
-Route::get('/administrator/dashboard', [AdminController::class, 'index']);
 Route::post('/administrator/login', [AuthController::class, 'postLogin'])->name('postLogin');
+
+Route::middleware(['auth'])->group(function () {
+    //ADMINISTRATOR
+    Route::get('/administrator/dashboard', [AdminController::class, 'index'])->name('admin_dashboard');
+
+    //ARTIKEL
+    Route::get('/administrator/artikel/tambah', [ArtikelController::class, 'index']);
+    Route::get('/administrator/artikel/list', [ArtikelController::class, 'list_index']);
+    Route::post('/administrator/artikel/tambah', [ArtikelController::class, 'postArtikel'])->name('postArtikel');
+    Route::get('/administrator/artikel/edit/{id}', [ArtikelController::class, 'edit_index']);
+
+    Route::get('/administrator/logout', [AuthController::class, 'signOut'])->name('logout');
+});

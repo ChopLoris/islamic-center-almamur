@@ -30,6 +30,7 @@
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+    @yield('custom-css')
 
     <!-- Page CSS -->
 

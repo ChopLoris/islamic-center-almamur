@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Session;
 class AuthController extends Controller
 {
     public function index() {
+        if(auth()->check()) {
+            return redirect()->route('admin_dashboard');
+        }
         return view('auth.login');
     }
 
@@ -20,11 +23,10 @@ class AuthController extends Controller
 
         $credentials = $request->only('username', 'password');
         if(Auth::attempt($credentials)) {
-            return redirect()->intended('dashboard')
-                                ->withSuccess('Signed In');
+            return redirect()->route('admin_dashboard')->withSuccess('Signed In');
         }
 
-        return redirect('administrator')->withSuccess('Login details are not valid');
+        return redirect('administrator')->with('failed', 'Username / Password salah, cek kembali.');
     }
 
     public function signOut() {
