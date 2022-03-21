@@ -16,13 +16,13 @@
 
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4">
-        <span class="text-muted fw-light">Artikel /</span> Edit Artikel
+        <span class="text-muted fw-light">Artikel /</span> Tambah Artikel
       </h4>
 
       <div class="row">
         <div class="col-12">
             <div class="card overflow-hidden">
-                <h5 class="card-header">Edit Artikel</h5>
+                <h5 class="card-header">Tambah Artikel</h5>
                 <div class="card-body">
                     @if(session()->has('success'))
                         <div class="alert alert-success" role="alert">{{ session('success') }}</div>
@@ -34,7 +34,7 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-12 mb-3">
                                 <label for="" class="form-label">Judul</label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror" value="{{ old('title', $dataArtikel->title) }}" name="title" id="title" required>
+                                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" required>
                                 <div class="invalid-feedback">
                                     Anda harus mengisi Judul artikel.
                                 </div>
@@ -44,7 +44,7 @@
                                 <select class="form-select @error('jenis') is-invalid @enderror" name="jenis" id="jenis" required>
                                     <option selected="">Choose...</option>
                                     @foreach ($kategoriArtikel as $kategori)
-                                        <option value="{{ $kategori->id }}" @if($kategori->id == $dataArtikel->kategori_id) selected @endif>{{ $kategori->name }}</option>
+                                        <option value="{{ $kategori->id }}">{{ $kategori->name }}</option>
                                     @endforeach
                                   </select>
                                   <div class="invalid-feedback">
@@ -53,7 +53,7 @@
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="" class="form-label">Isi Artikel</label>
-                                <input type="hidden" class="@error('content') is-invalid @enderror" value="{{ old('content', $dataArtikel->content) }}" name="content" id="content">
+                                <input type="hidden" class="@error('content') is-invalid @enderror" name="content" id="content">
                                 @trix(\App\Artikel::class, 'content', ['hideTools' => ['file-tools'], 'id' => 'content' ])
                                 <div class="invalid-feedback">
                                     Anda harus mengisi isi artikel.

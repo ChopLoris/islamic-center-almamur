@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArtikelTable extends Migration
+class CreatePengumumanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,14 @@ class CreateArtikelTable extends Migration
      */
     public function up()
     {
-        Schema::create('artikel', function (Blueprint $table) {
+        Schema::create('pengumuman', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug');
-            $table->text('content');
-            $table->string('filename_images');
-            $table->unsignedBigInteger('kategori_id');
+            $table->string('content');
+            $table->string('images_filename');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
-            $table->foreign('kategori_id')->references('id')->on('category_artikel');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
@@ -35,6 +32,6 @@ class CreateArtikelTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('artikel');
+        Schema::dropIfExists('pengumuman');
     }
 }

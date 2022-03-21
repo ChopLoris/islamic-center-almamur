@@ -28,6 +28,11 @@
                 <input type="text" class="form-control" name="search_artikel" id="search_artikel">
             </div>
         </div>
+        @if(session()->has('success'))
+            <div class="alert alert-success" role="alert">{{ session('success') }}</div>
+        @elseif (session()->has('failed'))
+            <div class="alert alert-danger" role="alert">{{ session('failed') }}</div>
+        @endif
         <div class="table-responsive text-nowrap">
             <table id="table_artikel_list" class="table table-hover">
                 <thead>
@@ -54,12 +59,16 @@
                                   <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="javascript:void(0);"
+                                  <a class="dropdown-item" href="/administrator/artikel/edit/{{ $artikel->id }}"
                                     ><i class="bx bx-edit-alt me-1"></i> Edit</a
                                   >
-                                  <a class="dropdown-item" href="javascript:void(0);"
-                                    ><i class="bx bx-trash me-1"></i> Delete</a
-                                  >
+                                  <form action="{{ route('artikel_delete', $artikel->id) }}" id="form_delete" method="POST">
+                                    @method('delete')
+                                    @csrf
+                                    <button type="button" id="btn_delete" class="dropdown-item">
+                                        <i class="bx bx-trash me-1"></i> Delete
+                                    </button>
+                                </form>
                                 </div>
                               </div>
                         </td>
@@ -68,31 +77,18 @@
                 </tbody>
             </table>
         </div>
+        <button type="button" id="btn_delete" class="dropdown-item">
+            <i class="bx bx-trash me-1"></i> Delete
+        </button>
     </div>
 </div>
 
 @endsection
 
 @section('custom-js')
+<script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/plugins/DataTables/datatables.min.js') }}"></script>
-<script>
-    $(document).ready(function () {
-        var dtArtikel = $('#table_artikel_list').DataTable({
-            searching: true,
-            paging: false,
-            info: false,
-            sDom: 'lrtip'
-        });
-
-        dtArtikel.columns().every(function () {
-            var that = this;
-
-            $('#search_artikel').on('keyup change', function () {
-                if(that.search() !== this.value) {
-                    that.search(this.value).draw();
-                }
-            })
-        })
-    })
-</script>
+<script src="{{ asset('js/inits/datatables.init.js') }}"></script>
+<script src="{{ asset('js/plugins/SweetAlert2/sweetalert.min.js') }}"></script>
+<script src="{{ asset('js/inits/artikel.init.js') }}"></script>
 @endsection

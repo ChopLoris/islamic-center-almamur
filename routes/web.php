@@ -27,10 +27,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/administrator/dashboard', [AdminController::class, 'index'])->name('admin_dashboard');
 
     //ARTIKEL
-    Route::get('/administrator/artikel/tambah', [ArtikelController::class, 'index']);
-    Route::get('/administrator/artikel/list', [ArtikelController::class, 'list_index']);
+    Route::get('/administrator/artikel/tambah', [ArtikelController::class, 'index'])->name('artikel_tambah');
+    Route::get('/administrator/artikel/list', [ArtikelController::class, 'list_index'])->name('artikel_list');
     Route::post('/administrator/artikel/tambah', [ArtikelController::class, 'postArtikel'])->name('postArtikel');
     Route::get('/administrator/artikel/edit/{id}', [ArtikelController::class, 'edit_index']);
+    Route::put('/administrator/artikel/edit/{id}', [ArtikelController::class, 'edit_post'])->name('postEdit');
+    Route::delete('/administrator/artikel/delete/{id}', [ArtikelController::class, 'deleteArtikel'])->name('artikel_delete');
 
     Route::get('/administrator/logout', [AuthController::class, 'signOut'])->name('logout');
 });

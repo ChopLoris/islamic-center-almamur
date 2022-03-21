@@ -127,12 +127,12 @@
         </a>
         <ul class="menu-sub">
           <li class="menu-item">
-            <a href="auth-login-basic.html" class="menu-link" target="_blank">
+            <a href="{{ route('artikel_tambah') }}" class="menu-link">
               <div data-i18n="Basic">Tambah Artikel</div>
             </a>
           </li>
           <li class="menu-item">
-            <a href="auth-register-basic.html" class="menu-link" target="_blank">
+            <a href="{{ route('artikel_list') }}" class="menu-link">
               <div data-i18n="Basic">List Artikel</div>
             </a>
           </li>
