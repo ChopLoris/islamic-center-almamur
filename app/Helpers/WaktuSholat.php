@@ -3,19 +3,21 @@
     function getTimeSholat($city) {
         $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, "https://api.pray.zone/v2/times/day.json?city=$city&date=".date("Y-m-d"));
+        //https://api.aladhan.com/v1/calendar?latitude=-6.2434347&longitude=106.9399808&method=2&month=".date("m")."&year=date("Y")
+
+        curl_setopt($ch, CURLOPT_URL, "https://api.aladhan.com/v1/calendar?latitude=-6.2434347&longitude=106.9399808&method=2&month=".date('m')."&year=".date('Y'));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         $output = curl_exec($ch);
 
         $response = json_decode($output, true);
 
         if($response['code'] == 200){
-            $subuh = $response['results']['datetime'][0]['times']['Fajr'];
-            $dhuhr = $response['results']['datetime'][0]['times']['Dhuhr'];
-            $terbit = $response['results']['datetime'][0]['times']['Sunrise'];
-            $asr = $response['results']['datetime'][0]['times']['Asr'];
-            $maghrib = $response['results']['datetime'][0]['times']['Maghrib'];
-            $isha = $response['results']['datetime'][0]['times']['Isha'];
+            $subuh = $response['data'][0]['timings']['Fajr'];
+            $dhuhr = $response['data'][0]['timings']['Dhuhr'];
+            $terbit = $response['data'][0]['timings']['Sunrise'];
+            $asr = $response['data'][0]['timings']['Asr'];
+            $maghrib = $response['data'][0]['timings']['Maghrib'];
+            $isha = $response['data'][0]['timings']['Isha'];
 
             $listTime = [
                 'subuh' => $subuh,

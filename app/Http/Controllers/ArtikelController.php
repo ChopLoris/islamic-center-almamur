@@ -61,8 +61,12 @@ class ArtikelController extends Controller
         return back()->with('success', 'Anda berhasil mengubah data ini.');
     }
 
-    public function deleteArtikel ($id) {
-        $findArtikel = Artikel::where('id', $id)->firstOrFail();
+    public function deleteArtikel (Request $request) {
+        $request->validate([
+            'article_id' => 'required|integer',
+        ]);
+
+        $findArtikel = Artikel::where('id', $request->article_id)->firstOrFail();
         $title = $findArtikel->title;
         $findArtikel->delete();
 

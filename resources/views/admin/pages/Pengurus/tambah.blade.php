@@ -16,13 +16,13 @@
 
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4">
-        <span class="text-muted fw-light">Artikel /</span> Tambah Artikel
+        <span class="text-muted fw-light">Pengurus Masjid /</span> Tambah
       </h4>
 
       <div class="row">
         <div class="col-12">
             <div class="card overflow-hidden">
-                <h5 class="card-header">Tambah Artikel</h5>
+                <h5 class="card-header">Tambah Pengurus Masjid</h5>
                 <div class="card-body">
                     @if(session()->has('success'))
                         <div class="alert alert-success" role="alert">{{ session('success') }}</div>
@@ -33,37 +33,32 @@
                         @csrf
                         <div class="row">
                             <div class="col-md-6 col-sm-12 mb-3">
-                                <label for="" class="form-label">Judul</label>
+                                <label for="" class="form-label">Nama Pengurus</label>
                                 <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" id="title" required>
                                 <div class="invalid-feedback">
-                                    Anda harus mengisi Judul artikel.
+                                    Anda harus mengisi Nama Pengurus.
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-12 mb-3">
-                                <label for="" class="form-label">Jenis Artikel</label>
-                                <select class="form-select @error('jenis') is-invalid @enderror" name="jenis" id="jenis" required>
-                                    <option selected="">Choose...</option>
-                                    @foreach ($kategoriArtikel as $kategori)
-                                        <option value="{{ $kategori->id }}">{{ $kategori->name }}</option>
-                                    @endforeach
-                                  </select>
-                                  <div class="invalid-feedback">
-                                    Anda harus mengisi Jenis artikel.
+                                <label for="" class="form-label">Organisasi</label>
+                                <input type="text" class="form-control @error('pengurus') is-invalid @enderror" name="organisasi" id="organisasi" required>
+                                <div class="invalid-feedback">
+                                    Anda harus mengisi Organisasi Pengurus.
                                 </div>
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="" class="form-label">Isi Artikel</label>
+                                <label for="" class="form-label">Keterangan Pengurus</label>
                                 <input type="hidden" class="@error('content') is-invalid @enderror" name="content" id="content">
                                 @trix(\App\Artikel::class, 'content', ['hideTools' => ['file-tools'], 'id' => 'content' ])
                                 <div class="invalid-feedback">
-                                    Anda harus mengisi isi artikel.
+                                    Anda harus mengisi keterangan Pengurus.
                                 </div>
                             </div>
                             <div class="col-12 mb-3">
-                                <label for="" class="form-label">Images</label>
+                                <label for="" class="form-label">Foto Pengurus</label>
                                 <input type="file" class="form-control @error('image_content') is-invalid @enderror" name="image_content" id="image_content" required />
                                 <div class="invalid-feedback">
-                                    Anda diharuskan memberikan sebuah gambar pada artikel.
+                                    Anda diharuskan memberikan sebuah foto.
                                 </div>
                             </div>
                             <div class="col-12 d-flex justify-content-end">

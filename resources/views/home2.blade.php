@@ -186,8 +186,8 @@
                                         <img class="h-24 w-24 bg-cover" src="{{ asset('assets/img/avatars/1.png') }}" alt="">
                                     </div>
                                     <div class="w-9/12 flex flex-col justify-between mx-auto">
-                                        <h2 class="font-semibold font-poppins 2xl:text-sm text-xs text-white">Jaja Miharja</h2>
-                                        <p class="font-semibold font-poppins 2xl:text-sm text-xs text-gray-300">Ketua DKM Masjid Jamie Al-Ma'mur</p>
+                                        <h2 class="font-semibold font-poppins 2xl:text-sm text-xs text-white">Nama Pengurus</h2>
+                                        <p class="font-semibold font-poppins 2xl:text-sm text-xs text-gray-300">Organisasi Sebagai</p>
                                         <a href="" class="flex justify-between items-center font-semibold 2xl:text-sm text-xs lg:w-1/2 text-white font-poppins rounded-lg lg:px-5 lg:py-2 px-3 bg-blue-500">
                                             <span>Profile</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -201,8 +201,8 @@
                                         <img class="h-24 w-24 bg-cover" src="{{ asset('assets/img/avatars/5.png') }}" alt="">
                                     </div>
                                     <div class="w-9/12 flex flex-col justify-between">
-                                        <h2 class="font-semibold font-poppins 2xl:text-sm text-xs text-white">Jaja Miharja</h2>
-                                        <p class="font-semibold font-poppins 2xl:text-sm text-xs text-gray-300">Ketua DKM Masjid Jamie Al-Ma'mur</p>
+                                        <h2 class="font-semibold font-poppins 2xl:text-sm text-xs text-white">Nama Pengurus</h2>
+                                        <p class="font-semibold font-poppins 2xl:text-sm text-xs text-gray-300">Organisasi Sebagai</p>
                                         <a href="" class="flex justify-between items-center font-semibold 2xl:text-sm text-xs lg:w-1/2 text-white font-poppins rounded-lg lg:px-5 lg:py-2 px-3 bg-blue-500">
                                             <span>Profile</span>
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+
     $('#save_btn').click(function () {
         var form = $('#form_edit');
 
@@ -23,8 +24,10 @@ $(document).ready(function () {
         })
     })
 
-    $('#btn_delete').click(function () {
-        var form = $('#form_delete');
+
+    $('.btn-delete').click(function () {
+        var dataID = $(this).data('id');
+        var form = $('#form-delete-'+dataID);
 
         Swal.fire({
             title: 'Apakah anda sudah yakin?',
@@ -36,15 +39,20 @@ $(document).ready(function () {
             confirmButtonText: 'Yakin, Hapus sekarang!'
         }).then((result) => {
             if(result.isConfirmed) {
-                form.submit();
                 Swal.fire(
                     'Berhasil!',
                     'Artikel berhasil di hapus dan tidak dapat di kemablikan kembali.',
                     'success'
-                )
+                );
+                form.submit();
             }
         })
-
     })
 
+
+    // $('.btn-delete').click(function (e) {
+    //     e.preventDefault();
+    //     var form = $('#form-delete');
+
+    // })
 })

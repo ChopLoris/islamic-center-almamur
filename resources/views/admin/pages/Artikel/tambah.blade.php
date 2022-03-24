@@ -44,7 +44,9 @@
                                 <select class="form-select @error('jenis') is-invalid @enderror" name="jenis" id="jenis" required>
                                     <option selected="">Choose...</option>
                                     @foreach ($kategoriArtikel as $kategori)
+                                        @if($kategori->id != 1)
                                         <option value="{{ $kategori->id }}">{{ $kategori->name }}</option>
+                                        @endif
                                     @endforeach
                                   </select>
                                   <div class="invalid-feedback">

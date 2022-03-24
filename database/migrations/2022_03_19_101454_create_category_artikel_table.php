@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
+use App\Models\KategoriArtikel;
 
 class CreateCategoryArtikelTable extends Migration
 {
@@ -18,6 +20,10 @@ class CreateCategoryArtikelTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        KategoriArtikel::create([
+            'name' => 'pengurus'
+        ]);
     }
 
     /**

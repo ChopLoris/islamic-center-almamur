@@ -4,21 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Te7aHoudini\LaravelTrix\Traits\HasTrixRichText;
-use Illuminate\Support\Carbon;
 
-class Artikel extends Model
+class Agenda extends Model
 {
     use HasFactory;
-    use HasTrixRichText;
-
     protected $guarded = [];
-    protected $table = 'pengumuman';
-
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
+    protected $table = 'agenda_jumat';
 
     public function getCreatedAtAttribute($date)
     {

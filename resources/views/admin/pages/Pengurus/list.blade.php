@@ -1,6 +1,7 @@
 @extends('admin.layouts.master')
 @section('custom-css')
     @trixassets
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('js/plugins/DataTables/datatables.min.css') }}">
     <style>
         .trix-content {
@@ -23,23 +24,23 @@
       <div class="card overflow-hidden">
         <div class="d-flex justify-content-between">
             <h5 class="card-header">List Artikel</h5>
-            <div class="d-flex align-items-center mx-3">
+            {{-- <div class="d-flex align-items-center mx-3">
                 <i class='bx bx-md mx-2 bx-search-alt-2'></i>
                 <input type="text" class="form-control" name="search_artikel" id="search_artikel">
-            </div>
+            </div> --}}
         </div>
         @if(session()->has('success'))
             <div class="alert alert-success" role="alert">{{ session('success') }}</div>
         @elseif (session()->has('failed'))
             <div class="alert alert-danger" role="alert">{{ session('failed') }}</div>
         @endif
-        <div class="table-responsive text-nowrap">
+        <div class="table-responsive text-nowrap px-3 py-3">
             <table id="table_artikel_list" class="table table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Judul</th>
-                        <th>Kategori</th>
+                        <th>Nama Pengurus</th>
+                        <th>Organisasi</th>
                         <th>Tanggal Publish</th>
                         <th>Pembuat</th>
                         <th>Aksi</th>
@@ -50,7 +51,7 @@
                     <tr>
                         <td><strong>{{ $loop->iteration }}</strong></td>
                         <td>{{ $artikel->title }}</td>
-                        <td>{{ $artikel->kategori->name }}</td>
+                        <td>{{ $artikel->organisasi }}</td>
                         <td>{{ $artikel->created_at }}</td>
                         <td><span class="text-primary">{{ $artikel->user->name }}</span></td>
                         <td>
@@ -59,16 +60,17 @@
                                   <i class="bx bx-dots-vertical-rounded"></i>
                                 </button>
                                 <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="/administrator/artikel/edit/{{ $artikel->id }}"
+                                  <a class="dropdown-item" href="/administrator/pengurus/edit/{{ $artikel->id }}"
                                     ><i class="bx bx-edit-alt me-1"></i> Edit</a
                                   >
-                                  <form action="{{ route('artikel_delete', $artikel->id) }}" id="form_delete" method="POST">
-                                    @method('delete')
+                                  <form action="{{ route('pengurus_delete') }}" id="form-delete-{{ $artikel->id }}" method="POST">
+                                    @method('DELETE')
                                     @csrf
-                                    <button type="button" id="btn_delete" class="dropdown-item">
+                                    <input type="hidden" name="article_id" value="{{ $artikel->id }}">
+                                    <button type="button" data-id="{{ $artikel->id }}" class="btn-delete dropdown-item">
                                         <i class="bx bx-trash me-1"></i> Delete
-                                    </button>
-                                </form>
+                                     </button>
+                                  </form>
                                 </div>
                               </div>
                         </td>
@@ -77,9 +79,6 @@
                 </tbody>
             </table>
         </div>
-        <button type="button" id="btn_delete" class="dropdown-item">
-            <i class="bx bx-trash me-1"></i> Delete
-        </button>
     </div>
 </div>
 

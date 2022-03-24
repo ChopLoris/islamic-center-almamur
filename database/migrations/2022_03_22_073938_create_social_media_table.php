@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePengumumanTable extends Migration
+class CreateSocialMediaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreatePengumumanTable extends Migration
      */
     public function up()
     {
-        Schema::create('pengumuman', function (Blueprint $table) {
+        Schema::create('social_media', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('content');
-            $table->string('images_filename');
-            $table->unsignedBigInteger('user_id');
+            $table->string('youtube')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -32,6 +29,6 @@ class CreatePengumumanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pengumuman');
+        Schema::dropIfExists('social_media');
     }
 }

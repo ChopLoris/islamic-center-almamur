@@ -18,11 +18,15 @@ class DatabaseSeeder extends Seeder
         User::create([
             'username' => 'admin',
             'name' => 'Administrator',
+            'isAdmin' => 1,
             'password' => bcrypt('12345')
         ]);
 
         KategoriArtikel::create([
             'name' => 'Berita'
+        ],
+        [
+            'name' => 'Pengurus'
         ],
         [
             'name' => 'Tausiyah'

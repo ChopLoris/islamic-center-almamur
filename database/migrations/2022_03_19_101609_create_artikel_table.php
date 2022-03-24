@@ -17,6 +17,7 @@ class CreateArtikelTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
+            $table->string('organisasi')->nullable();
             $table->text('content');
             $table->string('filename_images');
             $table->unsignedBigInteger('kategori_id');
