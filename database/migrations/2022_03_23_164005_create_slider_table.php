@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Slider;
 
 class CreateSliderTable extends Migration
 {
@@ -21,6 +22,13 @@ class CreateSliderTable extends Migration
             $table->string('slider_4')->nullable();
             $table->timestamps();
         });
+
+        Slider::create([
+            'slider_1' => NULL,
+            'slider_2' => NULL,
+            'slider_3' => NULL,
+            'slider_4' => NULL,
+        ]);
     }
 
     /**

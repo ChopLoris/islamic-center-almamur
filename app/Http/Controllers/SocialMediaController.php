@@ -8,7 +8,13 @@ use \App\Models\SocialMedia;
 class SocialMediaController extends Controller
 {
     public function index() {
-        return view('admin.pages.Informasi.index');
+        $sosmedList = [
+            'youtube' => NULL,
+        ];
+        if(SocialMedia::count() > 0) {
+            $sosmedList = SocialMedia::all();
+        }
+        return view('admin.pages.Informasi.index', compact('sosmedList'));
     }
 
     public function postData(Request $request) {

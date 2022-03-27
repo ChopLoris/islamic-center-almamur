@@ -148,15 +148,27 @@
         <div class="splide-navbar z-10">
             <div class="splide__track">
                 <ul class="splide__list">
+                    @if(!empty($slider->slider_1) || !empty($slider->slider_2) || !empty($slider->slider_3) || !empty($slider->slider_4))
+                        @if(!empty($slider->slider_1))
+                        <li class="splide__slide">
+                            <img class="w-screen h-[70vh] object-cover" src="{{ asset('images/slider/') }}/{{ $slider->slider_1 }}" />
+                        </li>
+                        @endif
+                        @if(!empty($slider->slider_2))
+                        <li class="splide__slide">
+                            <img class="w-screen h-[70vh] object-cover" src="{{ asset('images/slider/') }}/{{ $slider->slider_2 }}" />
+                        </li>
+                        @endif
+                        @if(!empty($slider->slider_3))
+                        <li class="splide__slide">
+                            <img class="w-screen h-[70vh] object-cover" src="{{ asset('images/slider/') }}/{{ $slider->slider_3 }}" />
+                        </li>
+                        @endif
+                    @else
                     <li class="splide__slide">
-                        <img class="w-screen h-[70vh] object-cover" src="{{ asset('images/gallery/1.png') }}" />
+                        <img class="w-screen h-[70vh] object-cover" src="{{ asset('images/slider/no-image.jpg') }}" />
                     </li>
-                    <li class="splide__slide">
-                        <img class="object-cover h-[70vh] w-screen" src="{{ asset('images/gallery/2.png') }}" />
-                    </li>
-                    <li class="splide__slide">
-                        <img class="object-cover h-[70vh] w-screen" src="{{ asset('images/gallery/3.png') }}" />
-                    </li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -181,36 +193,25 @@
                     <div class="slider-petugas">
                         <div class="splide__track">
                             <ul class="splide__list">
-                                <li class="splide__slide flex py-2 pr-5">
-                                    <div class="w-3/12 overflow-hidden pr-4">
-                                        <img class="h-24 w-24 bg-cover" src="{{ asset('assets/img/avatars/1.png') }}" alt="">
-                                    </div>
-                                    <div class="w-9/12 flex flex-col justify-between mx-auto">
-                                        <h2 class="font-semibold font-poppins 2xl:text-sm text-xs text-white">Nama Pengurus</h2>
-                                        <p class="font-semibold font-poppins 2xl:text-sm text-xs text-gray-300">Organisasi Sebagai</p>
-                                        <a href="" class="flex justify-between items-center font-semibold 2xl:text-sm text-xs lg:w-1/2 text-white font-poppins rounded-lg lg:px-5 lg:py-2 px-3 bg-blue-500">
-                                            <span>Profile</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </li>
-                                <li class="splide__slide flex py-2 pr-5">
-                                    <div class="w-3/12 overflow-hidden pr-4">
-                                        <img class="h-24 w-24 bg-cover" src="{{ asset('assets/img/avatars/5.png') }}" alt="">
-                                    </div>
-                                    <div class="w-9/12 flex flex-col justify-between">
-                                        <h2 class="font-semibold font-poppins 2xl:text-sm text-xs text-white">Nama Pengurus</h2>
-                                        <p class="font-semibold font-poppins 2xl:text-sm text-xs text-gray-300">Organisasi Sebagai</p>
-                                        <a href="" class="flex justify-between items-center font-semibold 2xl:text-sm text-xs lg:w-1/2 text-white font-poppins rounded-lg lg:px-5 lg:py-2 px-3 bg-blue-500">
-                                            <span>Profile</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </li>
+                                @if($pengurus->isNotEmpty())
+                                    @foreach ($pengurus as $data)
+                                    <li class="splide__slide flex py-2 pr-5">
+                                        <div class="w-3/12 overflow-hidden pr-4">
+                                            <img class="h-24 w-24 bg-cover" src="{{ asset('assets/img/avatars/1.png') }}" alt="">
+                                        </div>
+                                        <div class="w-9/12 flex flex-col justify-between mx-auto">
+                                            <h2 class="font-semibold font-poppins 2xl:text-sm text-xs text-white">{{ $data->title }}</h2>
+                                            <p class="font-semibold font-poppins 2xl:text-sm text-xs text-gray-300">{{ $data->organisasi }}</p>
+                                            <a href="{{ $data->slug }}" class="flex justify-between items-center font-semibold 2xl:text-sm text-xs lg:w-1/2 text-white font-poppins rounded-lg lg:px-5 lg:py-2 px-3 bg-blue-500">
+                                                <span>Profile</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </li>
+                                    @endforeach
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -228,20 +229,20 @@
                         <p class="font-poppins 2xl:text-sm text-xs my-2">(+62) 8688-8888-8888</p>
                         <ul class="flex">
                             <li class="text-white">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-youtube" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <a href="{{ $socialmedia->youtube }}"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-youtube" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <rect x="3" y="5" width="18" height="14" rx="4"></rect>
                                     <path d="M10 9l5 3l-5 3z"></path>
                                  </svg></a>
                             </li>
                             <li>
-                                <a href=""><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <a href="{{ $socialmedia->facebook }}"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3"></path>
                                  </svg></a>
                             </li>
                             <li>
-                                <a href=""><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <a href="{{ $socialmedia->instagram }}"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <rect x="4" y="4" width="16" height="16" rx="4"></rect>
                                     <circle cx="12" cy="12" r="3"></circle>
@@ -254,13 +255,13 @@
             </div>
         </div>
 
-        <section class="flex flex-col lg:mt-24 mt-10 lg:px-20 px-5">
+        <section class="flex flex-col lg:mt-28 mt-10 lg:px-20 px-5">
 
             <div class="mb-10 lg:flex hidden">
                 <div class="lg:w-8/12 w-full flex flex-col mx-auto">
                     <div class="flex justify-between">
                         <span class="font-semibold px-5 py-3 rounded text-black font-poppins xl:text-xl md:text-lg text-[10px]">Jadwal Sholat Bekasi</span>
-                        <span class="font-semibold px-5 py-3 rounded font-poppins xl:text-xl md:text-lg text-[10px]">Jum'at, 18 Maret 2022</span>
+                        <span class="font-semibold px-5 py-3 rounded font-poppins xl:text-xl md:text-lg text-[10px]">{{ $time }}</span>
                     </div>
                     <div class="flex shadow-xl rounded-xl bg-[#0F4C75]">
                         <div class="w-2/12 px-2 py-2">
@@ -315,54 +316,24 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach ($infaqList as $infaq)
                                         <tr class="border-b-2">
                                             <td class="w-3/12 text-left px-3 py-3">
                                                 <div class="flex">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 stroke-lime-500 w-6 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 stroke-lime-500 w-6 @if($infaq->jenis == 1) rotate-180 @endif" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M17 13l-5 5m0 0l-5-5m5 5V6" />
                                                     </svg>
-                                                    <p class="font-poppins text-sm font-semibold">Rp. 1.361.000</p>
+                                                    <p class="font-poppins text-sm font-semibold">Rp. {{ number_format($infaq->total) }}</p>
                                                 </div>
                                             </td>
                                             <td class="w-3/12 text-left px-3 py-3">
-                                                <p class="font-poppins text-sm font-semibold">03 Maret 2022</p>
+                                                <p class="font-poppins text-sm font-semibold">{{ $infaq->created_at }}</p>
                                             </td>
                                             <td class="w-6/12 flex-wrap text-left px-3 py-3">
-                                                <p class="font-poppins text-sm font-semibold">Infaq Jama’ah (Sholat Fardhu, Parkir, Penitipan, dan Standby)</p>
+                                                <p class="font-poppins text-sm font-semibold">{{ $infaq->perihal }}</p>
                                             </td>
                                         </tr>
-                                        <tr class="border-b-2">
-                                            <td class="w-3/12 text-left px-3 py-3">
-                                                <div class="flex">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 stroke-lime-500 w-6 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 13l-5 5m0 0l-5-5m5 5V6" />
-                                                    </svg>
-                                                    <p class="font-poppins text-sm font-semibold">Rp. 1.361.000</p>
-                                                </div>
-                                            </td>
-                                            <td class="w-3/12 text-left px-3 py-3">
-                                                <p class="font-poppins text-sm font-semibold">03 Maret 2022</p>
-                                            </td>
-                                            <td class="w-6/12 flex-wrap text-left px-3 py-3">
-                                                <p class="font-poppins text-sm font-semibold">Infaq Jama’ah (Sholat Fardhu, Parkir, Penitipan, dan Standby)</p>
-                                            </td>
-                                        </tr>
-                                        <tr class="border-b-2">
-                                            <td class="w-3/12 text-left px-3 py-3">
-                                                <div class="flex">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 stroke-lime-500 w-6 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M17 13l-5 5m0 0l-5-5m5 5V6" />
-                                                    </svg>
-                                                    <p class="font-poppins text-sm font-semibold">Rp. 1.361.000</p>
-                                                </div>
-                                            </td>
-                                            <td class="w-3/12 text-left px-3 py-3">
-                                                <p class="font-poppins text-sm font-semibold">03 Maret 2022</p>
-                                            </td>
-                                            <td class="w-6/12 flex-wrap text-left px-3 py-3">
-                                                <p class="font-poppins text-sm font-semibold">Infaq Jama’ah (Sholat Fardhu, Parkir, Penitipan, dan Standby)</p>
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -376,7 +347,7 @@
                     <div class="body-card">
                         <div class="px-5 py-6 border-x-2 border-b-2 flex justify-between">
                             <span class="2xl:text-4xl xl:text-3xl font-poppins text-[#232528] font-semibold">Saldo :</span>
-                            <span class="2xl:text-4xl xl:text-3xl font-poppins text-[#232528] font-semibold">Rp. 20.450.000</span>
+                            <span class="2xl:text-4xl xl:text-3xl font-poppins text-[#232528] font-semibold">Rp. {{ number_format($totalSaldo) }}</span>
                         </div>
                         <div class="px-5 py-3 border-x-2 border-b-2 rounded-b-xl shadow-lg">
                             <p class="text-base font-medium font-poppins text-[#232528]">Salurkan infaq Anda melalui rekening berikut :</p>
@@ -401,21 +372,22 @@
                 <div class="splide-content mt-10">
                     <div class="splide__track">
                         <ul class="splide__list lg:-mx-4">
+                            @foreach ($artikel as $items)
                             <li class="splide__slide 2xl:w-3/12 xl:w-4/12 md:w-6/12 w-full h-[540px] shadow-lg mx-4">
                                 <div class="flex flex-col h-full">
                                     <div class="img bg-black h-1/2 rounded-t-xl">
                                         <img class="rounded-t-xl h-full w-full opacity-50" src="{{ asset('images/gallery/1.png') }}" alt="">
                                     </div>
-                                    <div class="tag absolute top-[240px] bg-blue-500 px-5 py-3"><h3 class="text-white font-semibold font-base font-poppins">Tag Artikel</h3></div>
+                                    <div class="tag absolute top-[240px] bg-blue-500 px-5 py-3"><h3 class="text-white font-semibold font-base font-poppins">{{ $items->kategori->name }}</h3></div>
                                     <div class="body h-1/2 bg-white flex flex-col p-10 rounded-b-xl">
-                                        <h2 class="font-bold font-poppins text-xl mb-5">Title Artikel</h2>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, sunt illum ipsa optio dolorum ad.</p>
+                                        <h2 class="font-bold font-poppins text-xl mb-5">{{ $items->title }}</h2>
+                                        <p>{{ $items->content }}.</p>
                                         <div class="flex justify-between mt-5 p-5 bg-[#F4F7F6]">
                                             <div class="flex items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 text-blue-500 mr-2 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                     <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                 </svg>
-                                                <span class="text-xs font-poppins">Administrator</span>
+                                                <span class="text-xs font-poppins">{{$items->user->username}}</span>
                                             </div>
                                             <div>
                                                 <button class="flex text-xs text-blue-500 font-poppins">
@@ -429,90 +401,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="splide__slide 2xl:w-3/12 xl:w-4/12 md:w-6/12 w-full h-[540px] shadow-lg mx-4">
-                                <div class="flex flex-col h-full">
-                                    <div class="img bg-black h-1/2 rounded-t-xl">
-                                        <img class="rounded-t-xl h-full w-full opacity-50" src="{{ asset('images/gallery/1.png') }}" alt="">
-                                    </div>
-                                    <div class="tag absolute top-[240px] bg-blue-500 px-5 py-3"><h3 class="text-white font-semibold font-base font-poppins">Tag Artikel</h3></div>
-                                    <div class="body h-1/2 bg-white flex flex-col p-10 rounded-b-xl">
-                                        <h2 class="font-bold font-poppins text-xl mb-5">Title Artikel</h2>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, sunt illum ipsa optio dolorum ad.</p>
-                                        <div class="flex justify-between mt-5 p-5 bg-[#F4F7F6]">
-                                            <div class="flex items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 text-blue-500 mr-2 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                                </svg>
-                                                <span class="text-xs font-poppins">Administrator</span>
-                                            </div>
-                                            <div>
-                                                <button class="flex text-xs text-blue-500 font-poppins">
-                                                    <span>Selengkapnya</span>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="splide__slide 2xl:w-3/12 xl:w-4/12 md:w-6/12 w-full h-[540px] shadow-lg mx-4">
-                                <div class="flex flex-col h-full">
-                                    <div class="img bg-black h-1/2 rounded-t-xl">
-                                        <img class="rounded-t-xl h-full w-full opacity-50" src="{{ asset('images/gallery/1.png') }}" alt="">
-                                    </div>
-                                    <div class="tag absolute top-[240px] bg-blue-500 px-5 py-3"><h3 class="text-white font-semibold font-base font-poppins">Tag Artikel</h3></div>
-                                    <div class="body h-1/2 bg-white flex flex-col p-10 rounded-b-xl">
-                                        <h2 class="font-bold font-poppins text-xl mb-5">Title Artikel</h2>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, sunt illum ipsa optio dolorum ad.</p>
-                                        <div class="flex justify-between mt-5 p-5 bg-[#F4F7F6]">
-                                            <div class="flex items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 text-blue-500 mr-2 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                                </svg>
-                                                <span class="text-xs font-poppins">Administrator</span>
-                                            </div>
-                                            <div>
-                                                <button class="flex text-xs text-blue-500 font-poppins">
-                                                    <span>Selengkapnya</span>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="splide__slide 2xl:w-3/12 xl:w-4/12 md:w-6/12 w-full h-[540px] shadow-lg mx-4">
-                                <div class="flex flex-col h-full">
-                                    <div class="img bg-black h-1/2 rounded-t-xl">
-                                        <img class="rounded-t-xl h-full w-full opacity-50" src="{{ asset('images/gallery/1.png') }}" alt="">
-                                    </div>
-                                    <div class="tag absolute top-[240px] bg-blue-500 px-5 py-3"><h3 class="text-white font-semibold font-base font-poppins">Tag Artikel</h3></div>
-                                    <div class="body h-1/2 bg-white flex flex-col p-10 rounded-b-xl">
-                                        <h2 class="font-bold font-poppins text-xl mb-5">Title Artikel</h2>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, sunt illum ipsa optio dolorum ad.</p>
-                                        <div class="flex justify-between mt-5 p-5 bg-[#F4F7F6]">
-                                            <div class="flex items-center">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 text-blue-500 mr-2 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                                </svg>
-                                                <span class="text-xs font-poppins">Administrator</span>
-                                            </div>
-                                            <div>
-                                                <button class="flex text-xs text-blue-500 font-poppins">
-                                                    <span>Selengkapnya</span>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -533,17 +422,31 @@
                         </button>
                     </div>
                     <div class="flex lg:flex-row flex-col lg:space-x-10 2xl:w-8/12 w-full mt-5">
+                        @if($petugas)
                         <div class="flex lg:w-4/12 w-full shadow-lg p-10 rounded border-2">
                             <div class="flex flex-col items-center justify-center">
                                 <h3 class="text-xl font-bold font-poppins text-black-50">Petugas Jum'at</h3>
                                 <div class="lg:w-full flex justify-center md:w-1/3">
                                     <img class="2xl:w-32 md:w-2/3 w-1/2 rounded-full my-5" src="{{ asset('/images/ustadz.jpg') }}" alt="">
                                 </div>
-                                <span class="font-semibold font-poppins">Nama Ustadz</span>
-                                <p class="font-medium text-center text-gray-400 font-poppins">Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
-                                <span class="font-bold px-10 py-5 bg-blue-500 text-sm text-white rounded-full mt-5">12, Maret 2022</span>
+                                <span class="font-semibold font-poppins text-center">{{ $petugas->imam }}</span>
+                                <p class="font-medium text-center text-gray-400 font-poppins">Dijadwalkan pada tanggal :</p>
+                                <span class="font-bold px-10 py-5 bg-blue-500 text-sm text-white rounded-full mt-5">{{ $petugas->tanggal_mulai }}</span>
                             </div>
                         </div>
+                        @else
+                        <div class="flex flex-col lg:w-4/12 w-full items-center justify-between shadow-lg p-10 rounded border-2">
+                            <div class="title">
+                                <h3 class="text-xl font-bold font-poppins text-black-50">Petugas Jum'at</h3>
+                            </div>
+                            <div class="body">
+                                <span class="text-xl text-gray-200 font-poppins">Belum Ada Jadwal</span>
+                            </div>
+                            <div class="footer">
+
+                            </div>
+                        </div>
+                        @endif
                         <div class="flex lg:w-4/12 w-full shadow-lg justify-center rounded border-2">
                             <h2 class="absolute text-white font-semibold z-20 font-poppins mt-10 border-2 px-5 py-3 rounded-full">Agenda</h2>
                             <div class="slider-agenda z-10 w-full">
@@ -723,29 +626,21 @@
                         <div id="main-slider" class="splide shadow-xl mx-auto">
                             <div class="splide__track">
                               <ul class="splide__list">
-                                <li class="splide__slide">
-                                  <img class="rounded-xl" src="{{ asset('images/gallery/1.png') }}" />
-                                </li>
-                                <li class="splide__slide">
-                                  <img class="rounded-xl" src="{{ asset('images/gallery/2.png') }}" />
-                                </li>
-                                <li class="splide__slide">
-                                  <img class="rounded-xl" src="{{ asset('images/gallery/3.png') }}" />
-                                </li>
+                                  @foreach ($gallery as $items)
+                                  <li class="splide__slide">
+                                    <img class="rounded-xl" src="{{ asset('images/gallery') }}/{{ $items->filename }}" />
+                                  </li>
+                                  @endforeach
                               </ul>
                             </div>
                           </div>
 
                           <ul id="thumbnails" class="flex justify-center space-x-3 mt-5 thumbnails">
+                            @foreach ($gallery as $itemss)
                             <li class="w-[70px] overflow-hidden list-none cursor-pointer bg-black">
-                              <img class="thumbnail object-cover opacity-30" src="{{ asset('images/gallery/1.png') }}" />
+                              <img class="thumbnail object-cover opacity-30" src="{{ asset('images/gallery') }}/{{ $itemss->filename }}" />
                             </li>
-                            <li class="w-[70px] overflow-hidden list-none cursor-pointer bg-black">
-                              <img class="thumbnail opacity-30" src="{{ asset('images/gallery/2.png') }}" />
-                            </li>
-                            <li class="w-[70px] overflow-hidden list-none cursor-pointer bg-black">
-                              <img class="thumbnail opacity-30" src="{{ asset('images/gallery/3.png') }}" />
-                            </li>
+                            @endforeach
                           </ul>
                     </div>
                 </div>

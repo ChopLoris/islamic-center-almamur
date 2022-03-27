@@ -63,7 +63,7 @@ Route::middleware(['auth'])->group(function () {
 
     //SOCIALMEDIA
     Route::get('/administrator/social-media', [SocialMediaController::class, 'index'])->name('social_media');
-    Route::post('/administrator/social-media/post', [SocialMediaController::class, 'postData'])->name('social_media_post');
+    Route::post('/administrator/social-media/post', [SocialMediaController::class, 'postData'])->name('sosmed_post');
 
     //Slider
     Route::get('/administrator/slider', [SliderController::class, 'index'])->name('slider');

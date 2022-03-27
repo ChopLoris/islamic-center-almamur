@@ -16,7 +16,7 @@ class KategoriArtikel extends Model
     protected $table = 'category_artikel';
 
     public function artikel() {
-        return $this->hasMany(Artikel::class);
+        return $this->hasMany(Artikel::class, 'kategori_id');
     }
 
     public function getCreatedAtAttribute($date)
