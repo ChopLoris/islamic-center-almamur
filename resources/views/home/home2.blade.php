@@ -1,17 +1,5 @@
 @extends('home.layouts.master')
         @section('content')
-        <div class="fixed h-screen bg-black bg-opacity-70 w-full z-30" x-show="showSearch">
-            <div class="absolute right-0 text-white">
-                <button class="mr-5 mt-10" @click.prevent="showSearch = false">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <div class="absolute top-1/2 left-[25%] mx-auto w-8/12">
-                <input class="bg-white rounded-full lg:w-8/12 w-10/12 px-5 py-3 text-center placeholder-slate-700 border-2 border-blue-400 outline-0 font-poppins text-bold" placeholder="Search" type="text" @click.away="showSearch = false">
-            </div>
-        </div>
 
         <div class="splide-navbar z-10">
             <div class="splide__track">

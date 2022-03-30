@@ -83,6 +83,19 @@ class Home extends Controller
     }
 
 
+    public function listArtikel () {
+        $waktuSholat = getTimeSholat("bekasi");
+        //KategoryArtikel
+        $kategori = KategoriArtikel::orderBy('created_at', 'desc');
+        $semuaKategori = $kategori->get();
+
+        //Menu Artikel
+        $kategoriArtikel = $kategori->whereNotIn('id', [1,2,3])->paginate(4);
+
+        return view('home.list-artikel', compact('waktuSholat', 'semuaKategori', 'kategoriArtikel'));
+    }
+
+
 
     public function showArticle() {
         $waktuSholat = getTimeSholat("bekasi");

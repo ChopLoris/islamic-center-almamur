@@ -1,7 +1,7 @@
 <div class="fixed w-full z-30 top-0 bg-white shadow-lg" @scroll.window="showInfo = (window.pageYOffset > 20) ? false : true">
     <div class="p-3 bg-blue-500" :class="{ 'flex': showInfo, 'hidden': !showInfo }">
         <span class="w-36 lg:flex hidden text-white 2xl:text-base lg:text-sm font-semibold font-poppins">SEKILAS INFO</span>
-        <marquee class="font-poppins text-white lg:text-sm text-xs font-semibold" behavior="" direction="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga laborum sit ex voluptatum iure accusantium?</marquee>
+        <marquee class="font-poppins text-white lg:text-sm text-xs font-semibold" behavior="" loop="infinite" direction="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga laborum sit ex voluptatum iure accusantium?</marquee>
         <span id="timeNow" class="w-40 ml-5 lg:flex hidden text-white 2xl:text-base lg:text-sm font-semibold font-poppins">WAKTU 15:03:22</span>
     </div>
     <div class="lg:container bg-white flex lg:flex-row flex-col justify-between mx-auto 2xl:px-16 px-0">
@@ -117,7 +117,7 @@
     </div>
 </div>
 
-<div class="fixed h-screen bg-black bg-opacity-70 w-full z-30" x-show="showSearch">
+<div class="fixed h-screen bg-black bg-opacity-70 w-full z-40" x-show="showSearch">
     <div class="absolute right-0 text-white">
         <button class="mr-5 mt-10" @click.prevent="showSearch = false">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="4">

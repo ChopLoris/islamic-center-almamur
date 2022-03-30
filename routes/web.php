@@ -29,6 +29,7 @@ Route::get('/', [Home::class, 'index']);
 Route::get('/administrator', [AuthController::class, 'index'])->name('administrator');
 Route::post('/administrator/login', [AuthController::class, 'postLogin'])->name('postLogin');
 Route::get('/artikel', [Home::class, 'showArticle']);
+Route::get('/artikel/list', [Home::class, 'listArtikel']);
 
 Route::middleware(['auth'])->group(function () {
     //ADMINISTRATOR
