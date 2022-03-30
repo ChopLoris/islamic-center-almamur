@@ -1,137 +1,5 @@
-    <!DOCTYPE html>
-    <html lang="en">
-        <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="preconnect" href="https://fonts.googleapis.com">
-            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-            <link rel="icon" href="{{ asset('/images/logo.png') }}">
-            <title>Masjid Jamie Al-Ma'mur - Islamic Center</title>
-            <link
-                href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Poppins:wght@400;500;600;700&display=swap"
-                rel="stylesheet">
-                <link rel="stylesheet" href="{{ asset('css/splide-3.6.12/css/splide.min.css') }}">
-            <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        </head>
-    <body class="w-full h-screen" x-data="{ showInfo: true, showSearch: false }">
-        <div class="fixed w-full z-30 top-0 bg-white shadow-lg" @scroll.window="showInfo = (window.pageYOffset > 20) ? false : true">
-            <div class="p-3 bg-blue-500" :class="{ 'flex': showInfo, 'hidden': !showInfo }">
-                <span class="w-36 lg:flex hidden text-white 2xl:text-base lg:text-sm font-semibold font-poppins">SEKILAS INFO</span>
-                <marquee class="font-poppins text-white lg:text-sm text-xs font-semibold" behavior="" direction="">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga laborum sit ex voluptatum iure accusantium?</marquee>
-                <span id="timeNow" class="w-40 ml-5 lg:flex hidden text-white 2xl:text-base lg:text-sm font-semibold font-poppins">WAKTU 15:03:22</span>
-            </div>
-            <div class="lg:container bg-white flex lg:flex-row flex-col justify-between mx-auto 2xl:px-16 px-0">
-                <div class="flex flex-col xl:w-6/12 lg:w-5/12 items-center logo">
-                    <div class="flex w-full items-center">
-                        <div class="image">
-                            <img src="{{ asset('images/logo.png') }}" alt="">
-                        </div>
-                        <div class="ml-2">
-                            <h1 class="xl:text-2xl lg:text-xl text-sm font-semibold font-poppins">Masjid Jamie Al-Ma'mur</h1>
-                            <p class="xl:text-sm w-8/12 lg:text-sm text-xs font-semibold font-poppins text-gray-500">Pusat Perubahan Menuju Muslim Yang Rahmatan Lil'alamin</p>
-                        </div>
-                    </div>
-                    <div class="w-full lg:hidden flex flex-col mx-auto">
-                        <div class="flex bg-[#0F4C75]">
-                            <div class="w-2/12 px-2 py-2">
-                                <h3 class="text-center text-white md:text-lg text-[10px] font-semibold">SUBUH</h3>
-                                <p class="text-center text-[#BBE1FA] font-semibold md:text-base text-[10px]">{{ $waktuSholat['subuh']}}</p>
-                            </div>
-                            <div class="w-2/12 px-2 py-2">
-                                <h3 class="text-center text-white md:text-lg text-[10px] font-semibold">TERBIT</h3>
-                                <p class="text-center text-[#BBE1FA] font-semibold md:text-base text-[10px]">{{ $waktuSholat['terbit']}}</p>
-                            </div>
-                            <div class="w-2/12 px-2 py-2">
-                                <h3 class="text-center text-white md:text-lg text-[10px] font-semibold">DZUHUR</h3>
-                                <p class="text-center text-[#BBE1FA] font-semibold md:text-base text-[10px]">{{ $waktuSholat['dhuhr']}}</p>
-                            </div>
-                            <div class="w-2/12 px-2 py-2">
-                                <h3 class="text-center text-white md:text-lg text-[10px] font-semibold">ASHAR</h3>
-                                <p class="text-center text-[#BBE1FA] font-semibold md:text-base text-[10px]">{{ $waktuSholat['asr']}}</p>
-                            </div>
-                            <div class="w-2/12 px-2 py-2">
-                                <h3 class="text-center text-white md:text-lg text-[10px] font-semibold">MAGHRIB</h3>
-                                <p class="text-center text-[#BBE1FA] font-semibold md:text-base text-[10px]">{{ $waktuSholat['maghrib']}}</p>
-                            </div>
-                            <div class="w-2/12 px-2 py-2">
-                                <h3 class="text-center text-white md:text-lg text-[10px] font-semibold">ISYA</h3>
-                                <p class="text-center text-[#BBE1FA] font-semibold md:text-base text-[10px]">{{ $waktuSholat['isha']}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="xl:w-6/12 lg:w-7/12 flex items-center" x-data="{ navOpen: false }">
-                    <div class="w-full lg:inline-flex hidden" :class="{ 'hidden': !navOpen, 'flex': navOpen}">
-                        <ul class="flex w-full lg:flex-row flex-col xl:space-x-10 lg:space-x-5 overflow-hidden">
-                            <li class="xl:text-lg lg:py-0 lg:px-0 border-b-2 border-blue-200 lg:border-b-4 py-3 px-2">
-                                <a class="text-base font-semibold font-poppins text-black-50 border-blue-400" href="">Beranda</a>
-                            </li>
-                            <li class="xl:text-lg lg:py-0 lg:px-0 py-3 px-2 border-b-2 border-blue-200 lg:border-b-0" x-data="{ opendropDown: false }">
-                                <button class="text-base w-full justify-between flex flex-row items-center space-x-2 mt-0 xl:mt-[3px] overflow-hidden font-semibold font-poppins text-black-50" @click.prevent="opendropDown = !opendropDown">
-                                    <span>Artikel</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </button>
-                                <div class="lg:absolute bg-white lg:w-48 lg:border-2 rounded-lg mt-6" x-show="opendropDown" @click.away="opendropDown = false">
-                                    <ul class="font-semibold font-poppins text-base">
-                                        <li class="px-3 py-3 hover:bg-blue-200"><a href="">Jadwal Jumat</a></li>
-                                        <li class="px-3 py-3 hover:bg-blue-200"><a href="">Jadwal Jumat</a></li>
-                                        <li class="px-3 py-3 hover:bg-blue-200"><a href="">Jadwal Jumat</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="xl:text-lg lg:py-0 lg:px-0 py-3 px-2 border-b-2 border-blue-200 lg:border-b-0" x-data="{ opendropDown: false }">
-                                <button class="text-base w-full justify-between flex flex-row items-center space-x-2 mt-0 xl:mt-[3px] overflow-hidden font-semibold font-poppins text-black-50" @click.prevent="opendropDown = !opendropDown">
-                                    <span>Infaq</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </button>
-                                <div class="lg:absolute bg-white lg:w-48 lg:border-2 rounded-lg mt-6" x-show="opendropDown" @click.away="opendropDown = false">
-                                    <ul class="font-semibold font-poppins text-base">
-                                        <li class="px-3 py-3 hover:bg-blue-200"><a href="">Jadwal Jumat</a></li>
-                                        <li class="px-3 py-3 hover:bg-blue-200"><a href="">Jadwal Jumat</a></li>
-                                        <li class="px-3 py-3 hover:bg-blue-200"><a href="">Jadwal Jumat</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="xl:text-lg lg:py-0 lg:px-0 py-3 px-2 border-b-2 border-blue-200 lg:border-b-0" x-data="{ opendropDown: false }">
-                                <button class="text-base w-full justify-between flex flex-row items-center space-x-2 mt-0 xl:mt-[3px] overflow-hidden font-semibold font-poppins text-black-50" @click.prevent="opendropDown = !opendropDown">
-                                    <span>Informasi</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </button>
-                                <div class="lg:absolute bg-white lg:w-48 lg:border-2 rounded-lg mt-6" x-show="opendropDown" @click.away="opendropDown = false">
-                                    <ul class="font-semibold font-poppins text-base">
-                                        <li class="px-3 py-3 hover:bg-blue-200"><a href="">Jadwal Jumat</a></li>
-                                        <li class="px-3 py-3 hover:bg-blue-200"><a href="">Jadwal Jumat</a></li>
-                                        <li class="px-3 py-3 hover:bg-blue-200"><a href="">Jadwal Jumat</a></li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="xl:text-lg lg:py-0 lg:px-0 border-b-2 border-blue-200 lg:border-b-0 py-3 px-2">
-                                <a class="text-base font-semibold font-poppins text-black-50 border-blue-400" href="">Gallery</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="lg:static absolute right-2 flex space-x-2" :class="{'top-7': !showInfo, 'top-16': showInfo}">
-                        <button class="px-2 py-2 bg-blue-200 rounded-full" @click.prevent="showSearch = !showSearch">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                              </svg>
-                        </button>
-                        <button class="lg:hidden px-2 py-2 bg-blue-200 rounded-full" @click.prevent = "navOpen = !navOpen">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                              </svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+@extends('home.layouts.master')
+        @section('content')
         <div class="fixed h-screen bg-black bg-opacity-70 w-full z-30" x-show="showSearch">
             <div class="absolute right-0 text-white">
                 <button class="mr-5 mt-10" @click.prevent="showSearch = false">
@@ -229,20 +97,20 @@
                         <p class="font-poppins 2xl:text-sm text-xs my-2">(+62) 8688-8888-8888</p>
                         <ul class="flex">
                             <li class="text-white">
-                                <a href="{{ $socialmedia->youtube }}"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-youtube" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <a href="{{ !$socialmedia ? '#' : $socialmedia->youtube }}"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-youtube" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <rect x="3" y="5" width="18" height="14" rx="4"></rect>
                                     <path d="M10 9l5 3l-5 3z"></path>
                                  </svg></a>
                             </li>
                             <li>
-                                <a href="{{ $socialmedia->facebook }}"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <a href="{{ !$socialmedia ? '#' : $socialmedia->facebook }}"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-facebook" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3"></path>
                                  </svg></a>
                             </li>
                             <li>
-                                <a href="{{ $socialmedia->instagram }}"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <a href="{{ !$socialmedia ? '#' : $socialmedia->instagram }}"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-instagram" width="32" height="32" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                     <rect x="4" y="4" width="16" height="16" rx="4"></rect>
                                     <circle cx="12" cy="12" r="3"></circle>
@@ -440,7 +308,7 @@
                                 <h3 class="text-xl font-bold font-poppins text-black-50">Petugas Jum'at</h3>
                             </div>
                             <div class="body">
-                                <span class="text-xl text-gray-200 font-poppins">Belum Ada Jadwal</span>
+                                <span class="text-xl text-gray-500 font-poppins">Belum Ada Jadwal</span>
                             </div>
                             <div class="footer">
 
@@ -452,50 +320,87 @@
                             <div class="slider-agenda z-10 w-full">
                                 <div class="splide__track">
                                     <ul class="splide__list">
+                                        @if (!count($agenda) > 0)
                                         <li class="splide__slide sm:w-1/2 md:w-1/2 xl:w-1/4">
                                             <a href="#" class="block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
-                                                <div class="relative pb-48 bg-black overflow-hidden">
-                                                    <img class="absolute inset-0 opacity-50 h-full w-full object-cover" src="{{ asset('images/ustadz.jpg') }}" alt="">
-                                                </div>
-                                                <div class="p-4">
-                                                    <h2 class="mt-2 mb-2 font-poppins font-bold">Judul Agenda</h2>
-                                                    <p class="font-poppins text-black-50 text-sm">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae, aliquid voluptatibus saepe ratione nulla perspiciatis maxime rem earum debitis veniam.</p>
-                                                </div>
-                                                <div class="p-4 border-t border-b text-xs text-gray-700">
-                                                    <button class="flex items-center py-3 px-5 text-center bg-blue-500 rounded-full">
-                                                        <span class="text-white font-poppins font-semibold">Details</span>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-3 text-white h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                                          </svg>
-                                                    </button>
+                                                <div class="bg-black opacity-50 flex justify-center h-full">
+                                                    <div class="title h-[470px] flex items-center">
+                                                        <h5 class="text-white font-bold font-poppins">Belum Ada Agenda</h5>
+                                                    </div>
                                                 </div>
                                             </a>
                                         </li>
+                                        @else
+                                            @foreach ($agenda as $items)
+                                            <li class="splide__slide sm:w-1/2 md:w-1/2 xl:w-1/4">
+                                                <a href="#" class="block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
+                                                    <div class="relative pb-48 bg-black overflow-hidden">
+                                                        <img class="absolute inset-0 opacity-50 h-full w-full object-cover" src="{{ asset('images/artikel/') }}/{{ $items->filename_images }}" alt="">
+                                                    </div>
+                                                    <div class="p-4">
+                                                        <h2 class="mt-2 mb-2 font-poppins font-bold">{{ $items->title }}</h2>
+                                                        <p class="font-poppins text-black-50 text-sm">{{ $items->content }}</p>
+                                                    </div>
+                                                    <div class="p-4 border-t border-b text-xs text-gray-700">
+                                                        <button class="flex items-center py-3 px-5 text-center bg-blue-500 rounded-full">
+                                                            <span class="text-white font-poppins font-semibold">Details</span>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3 text-white h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                              </svg>
+                                                        </button>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            @endforeach
+                                        @endif
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div class="flex lg:w-4/12 w-full shadow-lg justify-center rounded border-2">
                             <h2 class="absolute text-white font-semibold z-20 font-poppins mt-10 border-2 px-5 py-3 rounded-full">Pengumuman</h2>
-                            <div class="slider-pengumuman relative z-10">
+                            <div class="w-full slider-pengumuman relative z-10">
                                 <div class="splide__track">
                                     <ul class="splide__list">
+                                        @if (!count($pengumuman) > 0)
                                         <li class="splide__slide sm:w-1/2 md:w-1/2 xl:w-1/4">
                                             <a href="#" class="block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
-                                                <div class="relative pb-48 bg-black overflow-hidden">
-                                                    <img class="absolute inset-0 opacity-50 h-full w-full object-cover" src="{{ asset('images/ustadz.jpg') }}" alt="">
+                                                <div class="bg-black opacity-50 flex justify-center h-full">
+                                                    <div class="title h-[470px] flex items-center">
+                                                        <h5 class="text-white font-bold font-poppins">Belum Ada Pengumuman</h5>
+                                                    </div>
                                                 </div>
-                                                <div class="p-4">
-                                                    <h2 class="mt-2 mb-2 font-poppins font-bold">Judul Agenda</h2>
-                                                    <p class="font-poppins text-black-50 text-sm">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet corrupti quisquam dignissimos quasi sequi aliquam rem corporis fuga esse aut dolore repellat quia assumenda reiciendis aliquid suscipit facere, quibusdam laudantium.</p>
-                                                </div>
-                                                <div class="p-4 border-t border-b text-xs text-gray-700">
-                                                    <button class="flex items-center py-3 px-5 text-center bg-blue-500 rounded-full">
-                                                        <span class="text-white font-poppins font-semibold">Details</span>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="ml-3 text-white h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                                          </svg>
-                                                    </button>
+                                            </a>
+                                        </li>
+                                        @else
+                                            @foreach ($pengumuman as $items)
+                                            <li class="splide__slide sm:w-1/2 md:w-1/2 xl:w-1/4">
+                                                <a href="#" class="block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
+                                                    <div class="relative pb-48 bg-black overflow-hidden">
+                                                        <img class="absolute inset-0 opacity-50 h-full w-full object-cover" src="{{ asset('images/artikel/') }}/{{ $items->filename_images }}" alt="">
+                                                    </div>
+                                                    <div class="p-4">
+                                                        <h2 class="mt-2 mb-2 font-poppins font-bold">{{ $items->title }}</h2>
+                                                        <p class="font-poppins text-black-50 text-sm">{{ $items->content }}</p>
+                                                    </div>
+                                                    <div class="p-4 border-t border-b text-xs text-gray-700">
+                                                        <button class="flex items-center py-3 px-5 text-center bg-blue-500 rounded-full">
+                                                            <span class="text-white font-poppins font-semibold">Details</span>
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3 text-white h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                              </svg>
+                                                        </button>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            @endforeach
+                                        @endif
+                                        <li class="splide__slide sm:w-1/2 md:w-1/2 xl:w-1/4">
+                                            <a href="#" class="block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
+                                                <div class="bg-black opacity-50 flex justify-center h-full">
+                                                    <div class="title h-[470px] flex items-center">
+                                                        <h5 class="text-white font-bold font-poppins">Belum Ada Agenda</h5>
+                                                    </div>
                                                 </div>
                                             </a>
                                         </li>
@@ -514,103 +419,35 @@
                 <p class="font-sm font-poppins text-gray-600">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, ducimus.</p>
             </div>
             <div class="container md:px-20 mx-auto">
-                <div class="flex flex-wrap py-10">
-                    <div class="sm:w-1/2 md:w-1/2 xl:w-1/4 w-full p-4">
-                        <a href="#" class="block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
-                            <div class="relative pb-48 overflow-hidden">
-                                <img class="absolute inset-0 h-full w-full object-cover" src="{{ asset('images/gallery/1.png') }}" alt="">
+                <div class="flex item justify-center flex-wrap py-10">
+                    @if ($layanan->isNotEmpty())
+                        @foreach ($layanan as $item)
+                            <div class="sm:w-1/2 md:w-1/2 xl:w-1/4 w-full p-4">
+                                <div class="block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
+                                    <div class="relative pb-48 overflow-hidden">
+                                        <img class="absolute inset-0 h-full w-full object-cover" src="{{ asset('images/layanan') }}/{{ $item->filename_images }}" alt="">
+                                    </div>
+                                    <div class="p-4">
+                                        <h2 class="mt-2 mb-2 font-poppins font-bold">{{ $item->name }}</h2>
+                                    </div>
+                                    <div class="p-4 border-t border-b text-xs text-gray-700">
+                                        <span class="flex items-center mb-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-500 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                            </svg>
+                                            <span class="font-bold font-poppins ml-2">{{ $item->no_telepon }}</span>
+                                        </span>
+                                        <span class="flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-500 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                            </svg>
+                                            <span class="font-bold font-poppins ml-2">{{ $item->kontak_nama }}</span>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="p-4">
-                                <h2 class="mt-2 mb-2 font-poppins font-bold">Pusat Kajian Islam & Penerbitan</h2>
-                            </div>
-                            <div class="p-4 border-t border-b text-xs text-gray-700">
-                                <span class="flex items-center mb-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-500 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                    </svg>
-                                    <span class="font-bold font-poppins ml-2">(+62) 888 8888 9999</span>
-                                </span>
-                                <span class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-500 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                    </svg>
-                                    <span class="font-bold font-poppins ml-2">Nama Kontak (Sekretaris Mesjid)</span>
-                                </span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="sm:w-1/2 md:w-1/2 xl:w-1/4 w-full p-4">
-                        <a href="#" class="block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
-                            <div class="relative pb-48 overflow-hidden">
-                                <img class="absolute inset-0 h-full w-full object-cover" src="{{ asset('images/gallery/1.png') }}" alt="">
-                            </div>
-                            <div class="p-4">
-                                <h2 class="mt-2 mb-2 font-poppins font-bold">Pusat Kajian Islam & Penerbitan</h2>
-                            </div>
-                            <div class="p-4 border-t border-b text-xs text-gray-700">
-                                <span class="flex items-center mb-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-500 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                    </svg>
-                                    <span class="font-bold font-poppins ml-2">(+62) 888 8888 9999</span>
-                                </span>
-                                <span class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-500 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                    </svg>
-                                    <span class="font-bold font-poppins ml-2">Nama Kontak (Sekretaris Mesjid)</span>
-                                </span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="sm:w-1/2 md:w-1/2 xl:w-1/4 w-full p-4">
-                        <a href="#" class="block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
-                            <div class="relative pb-48 overflow-hidden">
-                                <img class="absolute inset-0 h-full w-full object-cover" src="{{ asset('images/gallery/1.png') }}" alt="">
-                            </div>
-                            <div class="p-4">
-                                <h2 class="mt-2 mb-2 font-poppins font-bold">Pusat Kajian Islam & Penerbitan</h2>
-                            </div>
-                            <div class="p-4 border-t border-b text-xs text-gray-700">
-                                <span class="flex items-center mb-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-500 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                    </svg>
-                                    <span class="font-bold font-poppins ml-2">(+62) 888 8888 9999</span>
-                                </span>
-                                <span class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-500 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                    </svg>
-                                    <span class="font-bold font-poppins ml-2">Nama Kontak (Sekretaris Mesjid)</span>
-                                </span>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="sm:w-1/2 md:w-1/2 xl:w-1/4 w-full p-4">
-                        <a href="#" class="block bg-white shadow-md hover:shadow-xl rounded-lg overflow-hidden">
-                            <div class="relative pb-48 overflow-hidden">
-                                <img class="absolute inset-0 h-full w-full object-cover" src="{{ asset('images/gallery/1.png') }}" alt="">
-                            </div>
-                            <div class="p-4">
-                                <h2 class="mt-2 mb-2 font-poppins font-bold">Pusat Kajian Islam & Penerbitan</h2>
-                            </div>
-                            <div class="p-4 border-t border-b text-xs text-gray-700">
-                                <span class="flex items-center mb-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-500 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                    </svg>
-                                    <span class="font-bold font-poppins ml-2">(+62) 888 8888 9999</span>
-                                </span>
-                                <span class="flex items-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-blue-500 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                    </svg>
-                                    <span class="font-bold font-poppins ml-2">Nama Kontak (Sekretaris Mesjid)</span>
-                                </span>
-                            </div>
-                        </a>
-                    </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </section>
@@ -646,20 +483,7 @@
                 </div>
             </div>
         </section>
-
-        <footer>
-            <div class="text-center p-6 bg-[#EAF6FF]">
-                <span>© 2022 Copyright:</span>
-                <span class="text-gray-600 font-semibold">Masjid Jami Al-Ma'mur</span>
-            </div>
-        </footer>
-
-
-        <script type="text/javascript" src="{{ asset('/js/app.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('/js/plugins/splide-3.6.12/js/splide.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('/js/plugins/alpinejs.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('/js/plugins/jquery-nav.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('/js/inits/app.init.js') }}"></script>
+        @endsection
+        @section('custom-js')
         <script type="text/javascript" src="{{ asset('/js/inits/slider.init.js') }}"></script>
-    </body>
-    </html>
+        @endsection

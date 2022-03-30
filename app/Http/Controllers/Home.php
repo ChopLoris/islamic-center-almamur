@@ -9,6 +9,7 @@ use Illuminate\Support\Carbon;
 use \App\Models\Infaq;
 use \App\Models\Artikel;
 use \App\Models\Agenda;
+use App\Models\Layanan;
 use \App\Models\KategoriArtikel;
 use DB;
 use App\Models\Slider;
@@ -38,7 +39,7 @@ class Home extends Controller
         $pengurus = Artikel::where('kategori_id', 1)->get();
 
         //ARTIKEL
-        $callArtikel = Artikel::where('kategori_id', '!=', 1)->get();
+        $callArtikel = Artikel::whereNotIn('kategori_id', [1, 2, 3])->get();
         $artikel = $callArtikel->map(function ($artikels) {
             $artikels->content = Str::of(strip_tags($artikels->content))->limit(110);
             return $artikels;
@@ -51,9 +52,47 @@ class Home extends Controller
             $petugas->tanggal_mulai = Carbon::createFromFormat('Y-m-d', $petugas->tanggal_mulai)->isoFormat('DD, MMMM Y');
         }
 
+        //AGENDA
+        $callAgenda = Artikel::where('kategori_id', 2)->get();
+        $agenda = $callAgenda->map(function ($agendas) {
+            $agendas->content = Str::of(strip_tags($agendas->content))->limit(110);
+            return $agendas;
+        });
+
+        //PENGUMUMAN
+        $callPengumuman = Artikel::where('kategori_id', 3)->get();
+        $pengumuman = $callPengumuman->map(function ($pengumumans) {
+            $pengumumans->content = Str::of(strip_tags($pengumumans->content))->limit(110);
+            return $pengumumans;
+        });
+
+        //KategoryArtikel
+        $kategori = KategoriArtikel::orderBy('created_at', 'desc');
+        $semuaKategori = $kategori->get();
+
+        //Menu Artikel
+        $kategoriArtikel = $kategori->whereNotIn('id', [1,2,3])->paginate(4);
+
         //GALLERY
         $gallery = Gallery::all();
 
-        return view('home2', compact('waktuSholat', 'socialmedia', 'time', 'infaqList', 'totalSaldo', 'slider', 'pengurus', 'gallery', 'artikel', 'petugas'));
+        //LAYANAN
+        $layanan = Layanan::orderBy('created_at', 'desc')->paginate(4);
+
+        return view('home.home2', compact('waktuSholat', 'socialmedia', 'time', 'infaqList', 'totalSaldo', 'slider', 'pengurus', 'gallery', 'artikel', 'petugas', 'agenda', 'pengumuman', 'layanan', 'kategoriArtikel', 'semuaKategori'));
+    }
+
+
+
+    public function showArticle() {
+        $waktuSholat = getTimeSholat("bekasi");
+        //KategoryArtikel
+        $kategori = KategoriArtikel::orderBy('created_at', 'desc');
+        $semuaKategori = $kategori->get();
+
+        //Menu Artikel
+        $kategoriArtikel = $kategori->whereNotIn('id', [1,2,3])->paginate(4);
+
+        return view('home.artikel', compact('waktuSholat', 'semuaKategori', 'kategoriArtikel'));
     }
 }

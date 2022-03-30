@@ -22,7 +22,13 @@ class CreateCategoryArtikelTable extends Migration
         });
 
         KategoriArtikel::create([
-            'name' => 'pengurus'
+            'name' => 'Pengurus'
+        ]);
+        KategoriArtikel::create([
+            'name' => 'Agenda'
+        ]);
+        KategoriArtikel::create([
+            'name' => 'Pengumuman'
         ]);
     }
 
