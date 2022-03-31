@@ -17,7 +17,7 @@ class ArtikelController extends Controller
     }
 
     public function list_index() {
-        $listArtikel = Artikel::all();
+        $listArtikel = Artikel::whereNotIn('kategori_id', [1,2,3])->get();
         return view('admin.pages.Artikel.list', compact('listArtikel'));
     }
 

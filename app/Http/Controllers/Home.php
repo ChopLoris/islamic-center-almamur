@@ -83,7 +83,7 @@ class Home extends Controller
     }
 
 
-    public function listArtikel () {
+    public function listArtikel (Request $request) {
         $waktuSholat = getTimeSholat("bekasi");
         //KategoryArtikel
         $kategori = KategoriArtikel::orderBy('created_at', 'desc');
@@ -92,12 +92,22 @@ class Home extends Controller
         //Menu Artikel
         $kategoriArtikel = $kategori->whereNotIn('id', [1,2,3])->paginate(4);
 
-        return view('home.list-artikel', compact('waktuSholat', 'semuaKategori', 'kategoriArtikel'));
+        $artikel = Artikel::latest()->whereNotIn('kategori_id', [1,2,3])->get();
+        if($request->has('category')) {
+            $artikel = KategoriArtikel::where('name', $request->category)->firstOrFail();
+            $artikel = KategoriArtikel::find($artikel->id)->artikel()->get();
+        }
+        $artikel = $artikel->map(function($item) {
+            $item->content = Str::of(strip_tags($item->content))->limit(110);
+            return $item;
+        });
+
+        return view('home.list-artikel', compact('waktuSholat', 'semuaKategori', 'kategoriArtikel', 'artikel'));
     }
 
 
 
-    public function showArticle() {
+    public function showArticle($slug) {
         $waktuSholat = getTimeSholat("bekasi");
         //KategoryArtikel
         $kategori = KategoriArtikel::orderBy('created_at', 'desc');
@@ -106,6 +116,20 @@ class Home extends Controller
         //Menu Artikel
         $kategoriArtikel = $kategori->whereNotIn('id', [1,2,3])->paginate(4);
 
-        return view('home.artikel', compact('waktuSholat', 'semuaKategori', 'kategoriArtikel'));
+
+        //Cari Artikel
+        $artikel = Artikel::where('slug', $slug)->firstOrFail();
+
+        //Random Artikel
+        $randArtikel = Artikel::whereNotIn('kategori_id', [1,2,3])->inRandomOrder()->limit(3)->get();
+        $randArtikel = $randArtikel->map(function ($item){
+            $item->content = Str::of(strip_tags($item->content))->limit(110);
+            return $item;
+        });
+
+        $sebelumnya = Artikel::where('id', '<', $artikel->id)->limit(1)->get();
+        $selanjutnya = Artikel::where('id', '>', $artikel->id)->limit(1)->get();
+
+        return view('home.artikel', compact('waktuSholat', 'semuaKategori', 'kategoriArtikel', 'artikel', 'randArtikel', 'sebelumnya', 'selanjutnya'));
     }
 }

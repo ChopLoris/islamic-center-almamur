@@ -45,7 +45,9 @@
                                 <select class="form-select @error('jenis') is-invalid @enderror" name="jenis" id="jenis" required>
                                     <option selected="">Choose...</option>
                                     @foreach ($kategoriArtikel as $kategori)
-                                        <option value="{{ $kategori->id }}" @if($kategori->id == $dataArtikel->kategori_id) selected @endif>{{ $kategori->name }}</option>
+                                        @if ($kategori->id != 1)
+                                            <option value="{{ $kategori->id }}" @if($kategori->id == $dataArtikel->kategori_id) selected @endif>{{ $kategori->name }}</option>
+                                        @endif
                                     @endforeach
                                   </select>
                                   <div class="invalid-feedback">

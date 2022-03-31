@@ -1,3 +1,9 @@
+<div id="preloader" class="fixed h-screen w-screen bg-blue-600 z-50 overflow-hidden">
+    <div class="flex justify-center items-center h-screen">
+        <img src="{{ asset('assets/img/preloader.gif') }}" alt="">
+    </div>
+</div>
+
 <div class="fixed w-full z-30 top-0 bg-white shadow-lg" @scroll.window="showInfo = (window.pageYOffset > 20) ? false : true">
     <div class="p-3 bg-blue-500" :class="{ 'flex': showInfo, 'hidden': !showInfo }">
         <span class="w-36 lg:flex hidden text-white 2xl:text-base lg:text-sm font-semibold font-poppins">SEKILAS INFO</span>

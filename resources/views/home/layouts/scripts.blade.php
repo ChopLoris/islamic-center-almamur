@@ -12,3 +12,11 @@
 <script type="text/javascript" src="{{ asset('/js/plugins/jquery-nav.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/js/inits/app.init.js') }}"></script>
 @yield('custom-js')
+
+<script>
+    var preload = document.getElementById('preloader');
+    window.addEventListener("load", function () {
+        preload.style.display = "none";
+        document.body.classList.remove('overflow-hidden');
+    })
+</script>
