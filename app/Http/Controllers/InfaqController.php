@@ -12,6 +12,10 @@ class InfaqController extends Controller
 {
     public function index(){
         $listInfaq = Infaq::latest('created_at')->get();
+        $listInfaq = $listInfaq->map(function($item) {
+            $item->tanggal = Carbon::createFromFormat('Y-m-d', $item->tanggal)->isoFormat('DD, MMMM Y');
+            return $item;
+        });
         $totalData = Infaq::count();
 
         $pemasukkan = DB::table('laporan_infaq')->where('jenis', 1)->sum('total');
@@ -74,6 +78,7 @@ class InfaqController extends Controller
             'perihal' => 'required',
             'total' => 'required|integer',
             'jenis' => 'required',
+            'tanggal' => 'required'
         ]);
 
         $userid = auth()->user()->id;
@@ -82,6 +87,7 @@ class InfaqController extends Controller
             'perihal' => $request->perihal,
             'total' => $request->total,
             'jenis' => $request->jenis,
+            'tanggal' => $request->tanggal,
             'user_id' => $userid
         ]);
 

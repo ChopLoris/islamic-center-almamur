@@ -65,9 +65,9 @@
                         </button>
                         <div class="lg:absolute bg-white lg:w-48 lg:border-2 rounded-lg mt-6" x-show="opendropDown" @click.away="opendropDown = false">
                             <ul class="font-semibold font-poppins text-base">
-                                <li class="px-3 py-3 hover:bg-blue-200"><a href="">Semua Kategori</a></li>
+                                <li class="px-3 py-3 hover:bg-blue-200"><a href="{{ route('home_artikel_list') }}">Semua Kategori</a></li>
                                 @foreach ($kategoriArtikel as $item)
-                                    <li class="px-3 py-3 hover:bg-blue-200"><a href="">{{ $item->name }}</a></li>
+                                    <li class="px-3 py-3 hover:bg-blue-200"><a href="{{ route('home_artikel_list',  $item->name) }}">{{ $item->name }}</a></li>
                                 @endforeach
                             </ul>
                         </div>

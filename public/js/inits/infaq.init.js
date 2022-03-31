@@ -72,6 +72,7 @@ $(document).ready(function () {
             success: function (response) {
                 $('#perihal').val(response.perihal);
                 $('#infaq_id').val(response.id);
+                $('#tanggal').val(response.tanggal);
                 $('#total').val(response.total);
                 $('#jenis_modal option[value='+response.jenis+']').attr('selected', 'selected');
                 $('#modalEdit').modal('toggle');

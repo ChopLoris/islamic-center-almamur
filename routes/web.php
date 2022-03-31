@@ -28,8 +28,8 @@ use Illuminate\Routing\RouteGroup;
 Route::get('/', [Home::class, 'index']);
 Route::get('/administrator', [AuthController::class, 'index'])->name('administrator');
 Route::post('/administrator/login', [AuthController::class, 'postLogin'])->name('postLogin');
-Route::get('/artikel/content/{slug}', [Home::class, 'showArticle']);
-Route::get('/artikel/{kategori}', [Home::class, 'listArtikel']);
+Route::get('/article/show/{slug}', [Home::class, 'showArticle']);
+Route::get('/article/list/{nameKategori?}', [Home::class, 'listArtikel'])->name('home_artikel_list');
 
 Route::middleware(['auth'])->group(function () {
     //ADMINISTRATOR

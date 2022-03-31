@@ -176,14 +176,14 @@
                                         <tr class="border-b-2">
                                             <td class="w-3/12 text-left px-3 py-3">
                                                 <div class="flex">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 stroke-lime-500 w-6 @if($infaq->jenis == 1) rotate-180 @endif" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 @if($infaq->jenis == 1) rotate-180 stroke-lime-500 @else stroke-red-500 @endif" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M17 13l-5 5m0 0l-5-5m5 5V6" />
                                                     </svg>
                                                     <p class="font-poppins text-sm font-semibold">Rp. {{ number_format($infaq->total) }}</p>
                                                 </div>
                                             </td>
                                             <td class="w-3/12 text-left px-3 py-3">
-                                                <p class="font-poppins text-sm font-semibold">{{ $infaq->created_at }}</p>
+                                                <p class="font-poppins text-sm font-semibold">{{ $infaq->tanggal }}</p>
                                             </td>
                                             <td class="w-6/12 flex-wrap text-left px-3 py-3">
                                                 <p class="font-poppins text-sm font-semibold">{{ $infaq->perihal }}</p>

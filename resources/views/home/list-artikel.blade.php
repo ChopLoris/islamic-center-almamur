@@ -7,7 +7,7 @@
         <div class="mx-auto flex justify-center">
             <h4 class="font-semibold font-poppins text-2xl">Artikel / Semua Kategori</h4>
         </div>
-        <div class="container mx-auto px-16">
+        <div class="container mx-auto lg:px-16 px-3">
             <div class="w-full flex flex-wrap py-10 -m-4">
                 @foreach ($artikel as $item)
                     <div class="lg:w-3/12 md:w-1/2 w-full p-4">
@@ -30,6 +30,7 @@
                     </div>
                 @endforeach
             </div>
+            {{ $artikel->links('vendor.pagination.custom') }}
         </div>
     </section>
 

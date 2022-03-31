@@ -18,6 +18,7 @@ class CreateLaporanInfaqTable extends Migration
             $table->string('perihal');
             $table->integer('total');
             $table->integer('jenis');
+            $table->date('tanggal');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

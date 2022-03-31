@@ -35,21 +35,25 @@
             <form action="{{ route('infaq_post') }}" id="form_infaq" method="POST">
                 @csrf
                 <div class="row">
-                    <div class="col-md-12 col-lg-4">
+                    <div class="col-md-12 col-lg-3">
                         <label class="form-label" for="">Dari</label>
                         <input class="form-control @error('perihal') is-invalid @enderror" type="text" name="perihal" required>
                         <div class="invalid-feedback">
                             Anda di haruskan mengisi data ini.
                         </div>
                     </div>
-                    <div class="col-md-12 col-lg-4">
+                    <div class="col-md-12 col-lg-3">
                         <label class="form-label" for="">Total</label>
                         <input class="form-control @error('total') is-invalid @enderror" type="number" name="total" required>
                         <div class="invalid-feedback">
                             Anda di haruskan mengisi data ini.
                         </div>
                     </div>
-                    <div class="col-md-12 col-lg-4">
+                    <div class="col-md-12 col-lg-3">
+                        <label class="form-label" for="">Tanggal</label>
+                        <input class="form-control" name="tanggal" type="date" value="" id="html5-date-input" required />
+                    </div>
+                    <div class="col-md-12 col-lg-3">
                         <label class="form-label" for="">Jenis</label>
                         <select class="form-select" name="jenis" id="jenis" required>
                             <option value="">--Pilih--</option>
@@ -91,7 +95,7 @@
                         <td>{{ $infaq->perihal }}</td>
                         <td>Rp. {{ number_format($infaq->total) }}</td>
                         <td>{{ $infaq->jenis == 1 ? 'Pemasukkan' : 'Pengeluaran' }}</td>
-                        <td>{{ $infaq->created_at }}</td>
+                        <td>{{ $infaq->tanggal }}</td>
                         <td><span class="text-primary">{{ $infaq->user->name }}</span></td>
                         <td>
                             <div class="dropdown">
@@ -154,6 +158,10 @@
             <div class="col mb-3">
               <label for="perihal" class="form-label">Dari</label>
               <input type="text" id="perihal" class="form-control" />
+            </div>
+            <div class="col mb-3">
+                <label for="tanggal" class="form-label">Tanggal</label>
+                <input class="form-control" name="tanggal" id="tanggal" type="date" value="" required />
             </div>
           </div>
           <div class="row g-2">

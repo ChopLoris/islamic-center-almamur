@@ -98,6 +98,7 @@ class ArtikelController extends Controller
         $userid = auth()->user()->id;
 
         $slug = Str::limit(preg_replace('/\s+/', '-', strtolower($request->title)), 200)."-".uniqid();
+        $slug = preg_replace('/[^A-Za-z0-9\-]/', '', $slug);
 
         Artikel::create([
             'title' => $request->title,

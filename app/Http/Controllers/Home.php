@@ -14,6 +14,7 @@ use \App\Models\KategoriArtikel;
 use DB;
 use App\Models\Slider;
 use Illuminate\Support\Str;
+use Illuminate\Pagination\Paginator;
 
 class Home extends Controller
 {
@@ -28,6 +29,10 @@ class Home extends Controller
 
         //INFAQ
         $infaqList = Infaq::orderBy('created_at', 'desc')->paginate(5);
+        $infaqList = $infaqList->map(function($item) {
+            $item->tanggal = Carbon::createFromFormat('Y-m-d', $item->tanggal)->isoFormat('DD, MMMM Y');
+            return $item;
+        });
         $pemasukkan = DB::table('laporan_infaq')->where('jenis', 1)->sum('total');
         $pengeluaran = DB::table('laporan_infaq')->where('jenis', 0)->sum('total');
         $totalSaldo = $pemasukkan - $pengeluaran;
@@ -83,24 +88,25 @@ class Home extends Controller
     }
 
 
-    public function listArtikel (Request $request) {
+    public function listArtikel ($nameKategori = null) {
         $waktuSholat = getTimeSholat("bekasi");
         //KategoryArtikel
         $kategori = KategoriArtikel::orderBy('created_at', 'desc');
         $semuaKategori = $kategori->get();
 
         //Menu Artikel
-        $kategoriArtikel = $kategori->whereNotIn('id', [1,2,3])->paginate(4);
+        $kategoriArtikel = $kategori->whereNotIn('id', [1,2,3])->limit(2)->get();
 
-        $artikel = Artikel::latest()->whereNotIn('kategori_id', [1,2,3])->get();
-        if($request->has('category')) {
-            $artikel = KategoriArtikel::where('name', $request->category)->firstOrFail();
-            $artikel = KategoriArtikel::find($artikel->id)->artikel()->get();
+        $artikel = Artikel::latest()->whereNotIn('kategori_id', [1,2,3])->paginate(8);
+        if($nameKategori != null) {
+            $artikel = KategoriArtikel::where('name', $nameKategori)->firstOrFail();
+            $artikel = KategoriArtikel::find($artikel->id)->artikel()->paginate(8);
         }
-        $artikel = $artikel->map(function($item) {
+        //$item->content = Str::of(strip_tags($item->content))->limit(110);
+        $artikel = $artikel->setCollection($artikel->getCollection()->transform(function ($item) {
             $item->content = Str::of(strip_tags($item->content))->limit(110);
             return $item;
-        });
+        }));
 
         return view('home.list-artikel', compact('waktuSholat', 'semuaKategori', 'kategoriArtikel', 'artikel'));
     }
