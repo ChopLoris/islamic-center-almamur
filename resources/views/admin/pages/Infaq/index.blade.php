@@ -161,7 +161,7 @@
             </div>
             <div class="col mb-3">
                 <label for="tanggal" class="form-label">Tanggal</label>
-                <input class="form-control" name="tanggal" id="tanggal" type="date" value="" required />
+                <input class="form-control" name="tanggal_edit" id="tanggal_edit" type="date" value="" required />
             </div>
           </div>
           <div class="row g-2">

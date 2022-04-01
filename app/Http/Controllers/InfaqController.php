@@ -47,6 +47,7 @@ class InfaqController extends Controller
             'perihal' => 'required',
             'total' => 'required|integer',
             'jenis_modal' => 'required',
+            'tanggal' => 'required',
             'infaq_id' => 'required|integer',
         ];
 
@@ -63,6 +64,7 @@ class InfaqController extends Controller
         $infaq->perihal = $request->perihal;
         $infaq->total = $request->total;
         $infaq->jenis = $request->jenis_modal;
+        $infaq->tanggal = $request->tanggal;
         $infaq->save();
 
         $result = [

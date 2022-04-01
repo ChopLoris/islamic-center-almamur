@@ -27,6 +27,7 @@ $(document).ready(function () {
         var dataPost = {
             infaq_id: $('#infaq_id').val(),
             perihal: $('#perihal').val(),
+            tanggal: $('#tanggal_edit').val(),
             total: $('#total').val(),
             jenis_modal: $('#jenis_modal').val(),
         }
@@ -72,7 +73,7 @@ $(document).ready(function () {
             success: function (response) {
                 $('#perihal').val(response.perihal);
                 $('#infaq_id').val(response.id);
-                $('#tanggal').val(response.tanggal);
+                $('#tanggal_edit').val(response.tanggal);
                 $('#total').val(response.total);
                 $('#jenis_modal option[value='+response.jenis+']').attr('selected', 'selected');
                 $('#modalEdit').modal('toggle');

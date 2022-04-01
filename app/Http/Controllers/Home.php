@@ -138,4 +138,17 @@ class Home extends Controller
 
         return view('home.artikel', compact('waktuSholat', 'semuaKategori', 'kategoriArtikel', 'artikel', 'randArtikel', 'sebelumnya', 'selanjutnya'));
     }
+
+    public function laporanInfaq() {
+
+        $waktuSholat = getTimeSholat("bekasi");
+        //KategoryArtikel
+        $kategori = KategoriArtikel::orderBy('created_at', 'desc');
+        $semuaKategori = $kategori->get();
+
+        //Menu Artikel
+        $kategoriArtikel = $kategori->whereNotIn('id', [1,2,3])->paginate(4);
+
+        return view('home.infaq', compact('waktuSholat', 'semuaKategori', 'kategoriArtikel'));
+    }
 }

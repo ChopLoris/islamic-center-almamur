@@ -30,6 +30,7 @@ Route::get('/administrator', [AuthController::class, 'index'])->name('administra
 Route::post('/administrator/login', [AuthController::class, 'postLogin'])->name('postLogin');
 Route::get('/article/show/{slug}', [Home::class, 'showArticle']);
 Route::get('/article/list/{nameKategori?}', [Home::class, 'listArtikel'])->name('home_artikel_list');
+Route::get('/laporan-infaq', [Home::class, 'laporanInfaq'])->name('index_laporanInfaq');
 
 Route::middleware(['auth'])->group(function () {
     //ADMINISTRATOR

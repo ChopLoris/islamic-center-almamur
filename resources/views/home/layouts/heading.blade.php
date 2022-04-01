@@ -9,5 +9,6 @@
         href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&family=Poppins:wght@400;500;600;700&display=swap"
         rel="stylesheet">
         <link rel="stylesheet" href="{{ asset('css/splide-3.6.12/css/splide.min.css') }}">
+        @yield('custom-css')
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
